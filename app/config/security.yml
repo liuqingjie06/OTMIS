@@ -16,6 +16,7 @@ security:
                 users:
                     user:  { password: userpass, roles: [ 'ROLE_USER' ] }
                     admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+                    liuqingjie06: { password: 7311371, roles: [ 'ROLE_USER' ] }
 
     firewalls:
         dev:

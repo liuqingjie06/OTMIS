@@ -5,6 +5,7 @@ namespace Acme\DemoBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Acme\DemoBundle\Form\ContactType;
+use Symfony\Component\HttpFoundation\SessionStorage\SessionStorage;
 
 // these import the "@Route" and "@Template" annotations
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -27,6 +28,11 @@ class DemoController extends Controller
      */
     public function helloAction($name)
     {
+/*     	$session= new Session();
+    	$session->start();
+    	
+    	$session->set('name','liu');
+    	echo $session->get('name'); */
         return array('name' => $name);
     }
 
