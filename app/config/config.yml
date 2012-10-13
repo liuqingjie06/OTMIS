@@ -4,7 +4,8 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: %locale% }
+    #translator:      ~
+    translator: { fallback :Zh_cn }
     secret:          %secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -63,3 +64,4 @@ fos_user:
      db_driver: orm
      firewall_name: main
      user_class: Acme\UserBundle\Entity\User
+    
