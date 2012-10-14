@@ -25,11 +25,13 @@ class User extends BaseUser
 		// your own logic
 	}
 	
-	/**
-	 * @ORM\ManyToMany(targetEntity="Acme\UserBundle\Enityt\Group"
-	 * @ORM\JoinTable(name="fos_user_user_group",
-	 *          joinColumns= {@ORM\JoinColumn(name="user_id", referencedColumn="id")},
-	 *          inverseJoinColumns={@ORM\JoinColumn(name="group_id,referencedColumnName="id")}
-	 *          )
-	 */
+	 /**
+     * @ORM\ManyToMany(targetEntity="Acme\UserBundle\Entity\Group")
+     * @ORM\JoinTable(name="fos_user_user_group",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
+     * )
+     */
+    protected $groups;
+
 }
