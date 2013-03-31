@@ -18,7 +18,9 @@
         "sensio/generator-bundle": "2.2.*",
         "jms/security-extra-bundle": "1.3.*",
         "jms/di-extra-bundle": "1.2.*",
-         "friendsofsymfony/user-bundle": "*"
+         "friendsofsymfony/user-bundle": "*",
+          "vich/uploader-bundle": "dev-master",
+         "knplabs/knp-gaufrette-bundle" : "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

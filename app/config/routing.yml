@@ -1,3 +1,31 @@
+acme_service:
+    resource: "@AcmeServiceBundle/Resources/config/routing.yml"
+    prefix:   /
+
+acme_dataanalysis:
+    resource: "@AcmeDataanalysisBundle/Resources/config/routing.yml"
+    prefix:   /
+
+acme_official:
+    resource: "@AcmeOfficialBundle/Resources/config/routing.yml"
+    prefix:   /
+
+acme_safety:
+    resource: "@AcmeSafetyBundle/Resources/config/routing.yml"
+    prefix:   /
+
+acme_equipment:
+    resource: "@AcmeEquipmentBundle/Resources/config/routing.yml"
+    prefix:   /
+
+acme_admin:
+    resource: "@AcmeAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
+acme_test:
+    resource: "@AcmeTestBundle/Resources/config/routing.yml"
+    prefix:   /
+
 acme_user:
     resource: "@AcmeUserBundle/Resources/config/routing.yml"
     prefix:   /
@@ -28,3 +56,7 @@ fos_user_change_password:
 fos_user_group:
     resource: "@FOSUserBundle/Resources/config/routing/group.xml"
     prefix: /group
+    
+acme_test:
+    resource: "@AcmeTestBundle/Resources/config/routing.yml"
+    prefix:   /

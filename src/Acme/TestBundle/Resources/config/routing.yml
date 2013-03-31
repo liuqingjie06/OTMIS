@@ -1,0 +1,7 @@
+acme_test_homepage:
+    pattern:  /test/name
+    defaults: { _controller: AcmeTestBundle:Default:index }
+    
+acme_test_main:
+    pattern:  /test/main
+    defaults: { _controller: AcmeTestBundle:Default:main }

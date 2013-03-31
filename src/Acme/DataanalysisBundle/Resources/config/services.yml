@@ -1,0 +1,7 @@
+parameters:
+#    acme_dataanalysis.example.class: Acme\DataanalysisBundle\Example
+
+services:
+#    acme_dataanalysis.example:
+#        class: %acme_dataanalysis.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

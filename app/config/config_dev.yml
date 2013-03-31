@@ -21,6 +21,22 @@ monolog:
 
 assetic:
     use_controller: true
+    bundle:
+        # Defaults (all currently registered bundles):
+        - FrameworkBundle
+        - SecurityBundle
+        - TwigBundle
+        - MonologBundle
+        - SwiftmailerBundle
+        - DoctrineBundle
+        - AsseticBundle
+        - AcmeTestBundle
+        - AcmeDemoBundle
 
 #swiftmailer:
 #    delivery_address: me@example.com
+
+services:
+    hello:
+        class:  Acme\TestBundle\hello
+

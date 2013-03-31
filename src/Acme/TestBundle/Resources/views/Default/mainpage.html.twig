@@ -1,0 +1,161 @@
+{% extends 'AcmeTestBundle::layout.html.twig' %}
+
+{% block header %}
+{% include "AcmeTestBundle:Default:header.html.twig" %}
+{% endblock %}
+
+{% block menu %}
+{% include "AcmeTestBundle:Default:menu_l.html.twig" %}
+{% endblock %}
+
+{% block content%}
+<div class="content l" id="right">
+	 <div class="box">
+        	<div class="contentbox l">
+            	<div class="title">
+            		<strong class="l">安全问题</strong>
+        			<span class="r"></span>
+                </div>
+                <div class="textbox" id="0105">
+                	<table width="100%" border="0" id="tabledata" cellspacing="0" cellpadding="0" class="table_style2">
+  						<tbody><tr>
+  							<td class="left border_none"><div class="tdtxtwidth l">累计	用户总数</div></td>
+  							<td class="center border_none"><div class="tdtxtwidth"><strong id="900510"></strong></div></td>
+                           <!--<td class="right border_none" width="30" style="padding-right:10px">&nbsp;</td>-->
+  						</tr>
+  						<tr>
+  							<td class="left"><div class="tdtxtwidth l">一次性用户（%）</div></td>
+  							<td class="center"><div class="tdtxtwidth"><strong id="000713">--</strong> ( <strong id="000813" style="font-size:15px;">--</strong> ) </div></td>
+                             <td class="right" width="30" style="padding-right:10px">
+                                <div id="bench_mark_onceuser-000813" class="relative fmk" style="z-index:96">
+                                	<a href="javascript:void(0)" class="bottun4 nonehover" onclick=""><font>B</font></a>
+                                </div>
+                            </td>
+  						</tr>
+                        <tr>
+  							<td class="left"><div class="tdtxtwidth l">启动（总数 | 每日人均）</div></td>
+  							<td class="center"><div class="tdtxtwidth"><strong><font id="000322"></font>|<font id="100122" style="font-size:15px"></font></strong></div></td>
+                         	<td class="right" width="30" style="padding-right:10px">
+                                <div id="bench_mark_avgstartup-100122" class="relative fmk" style="z-index:95">
+                                	<a href="javascript:void(0)" class="bottun4 nonehover" onclick=""><font>B</font></a>
+                                </div>
+                            </td>
+  						</tr>
+  					</tbody></table>
+                </div>
+            </div>
+            <div class="contentbox r">
+            	<div class="title">
+            		<strong class="l">待办事件</strong>
+                	<span class="r"></span>
+        		</div>
+                <div class="textbox" id="0106">
+                	<table width="100%" border="0" cellspacing="0" id="tabledata2" cellpadding="0" class="table_style2">
+  						<tbody><tr>
+  							<td class="left border_none"><div class="tdtxtwidth l">周活跃（%）</div></td>
+  							<td class="center border_none"><div class="tdtxtwidth"><strong id="000814"></strong>（<strong id="100314" style="font-size:15px"></strong>）</div></td>
+                            <td class="right border_none" width="30" style="padding-right:10px">
+                                <div id="bench_mark_weekactive-100314" class="relative fmk" style="z-index:99">
+                                	<a href="javascript:void(0)" class="bottun4 nonehover" onclick=""><font>B</font></a>
+                                </div>
+                            </td>
+  						</tr>
+  						<tr>
+  							<td class="left"><div class="tdtxtwidth l">月活跃（%）</div></td>
+  							<td class="center"><div class="tdtxtwidth"><strong id="000914"></strong>（<strong id="100414" style="font-size:15px"></strong>）</div></td>
+                            <td class="right" width="30" style="padding-right:10px">
+                                <div id="bench_mark_monthactive-100414" class="relative fmk" style="z-index:98">
+                                	<a href="javascript:void(0)" class="bottun4 nonehover" onclick=""><font>B</font></a>
+                                </div>
+                            </td>
+  						</tr>
+                        <tr>
+  							<td class="left"><div class="tdtxtwidth l">月留存率</div></td>
+  							<td class="center"><div class="tdtxtwidth"><strong id="100514"></strong></div></td>
+                          	<td class="right" width="30" style="padding-right:10px">
+                                <div id="bench_mark_monthkeepuser-100514" class="relative fmk" style="z-index:97">
+                                	<a href="javascript:void(0)" class="bottun4 nonehover" onclick=""><font>B</font></a>
+                                </div>
+                            </td>
+  						</tr>
+  					</tbody></table>
+                </div>
+            </div>
+            <div class="clear"></div>
+    </div>
+    <div class="box">
+        	<div class="contentbox l">
+            	<div class="title">
+            		<strong class="l">公文流转</strong>
+        			<span class="r"></span>
+                </div>
+                <div class="textbox" id="0105">
+                	<table width="100%" border="0" id="tabledata" cellspacing="0" cellpadding="0" class="table_style2">
+  						<tbody><tr>
+  							<td class="left border_none"><div class="tdtxtwidth l">累计	用户总数</div></td>
+  							<td class="center border_none"><div class="tdtxtwidth"><strong id="900510"></strong></div></td>
+                           <!--<td class="right border_none" width="30" style="padding-right:10px">&nbsp;</td>-->
+  						</tr>
+  						<tr>
+  							<td class="left"><div class="tdtxtwidth l">一次性用户（%）</div></td>
+  							<td class="center"><div class="tdtxtwidth"><strong id="000713">--</strong> ( <strong id="000813" style="font-size:15px;">--</strong> ) </div></td>
+                             <td class="right" width="30" style="padding-right:10px">
+                                <div id="bench_mark_onceuser-000813" class="relative fmk" style="z-index:96">
+                                	<a href="javascript:void(0)" class="bottun4 nonehover" onclick=""><font>B</font></a>
+                                </div>
+                            </td>
+  						</tr>
+                        <tr>
+  							<td class="left"><div class="tdtxtwidth l">启动（总数 | 每日人均）</div></td>
+  							<td class="center"><div class="tdtxtwidth"><strong><font id="000322"></font>|<font id="100122" style="font-size:15px"></font></strong></div></td>
+                         	<td class="right" width="30" style="padding-right:10px">
+                                <div id="bench_mark_avgstartup-100122" class="relative fmk" style="z-index:95">
+                                	<a href="javascript:void(0)" class="bottun4 nonehover" onclick=""><font>B</font></a>
+                                </div>
+                            </td>
+  						</tr>
+  					</tbody></table>
+                </div>
+            </div>
+            <div class="contentbox r">
+            	<div class="title">
+            		<strong class="l">次日计划</strong>
+                	<span class="r"></span>
+        		</div>
+                <div class="textbox" id="0106">
+                	<table width="100%" border="0" cellspacing="0" id="tabledata2" cellpadding="0" class="table_style2">
+  						<tbody><tr>
+  							<td class="left border_none"><div class="tdtxtwidth l">周活跃（%）</div></td>
+  							<td class="center border_none"><div class="tdtxtwidth"><strong id="000814"></strong>（<strong id="100314" style="font-size:15px"></strong>）</div></td>
+                            <td class="right border_none" width="30" style="padding-right:10px">
+                                <div id="bench_mark_weekactive-100314" class="relative fmk" style="z-index:99">
+                                	<a href="javascript:void(0)" class="bottun4 nonehover" onclick=""><font>B</font></a>
+                                </div>
+                            </td>
+  						</tr>
+  						<tr>
+  							<td class="left"><div class="tdtxtwidth l">月活跃（%）</div></td>
+  							<td class="center"><div class="tdtxtwidth"><strong id="000914"></strong>（<strong id="100414" style="font-size:15px"></strong>）</div></td>
+                            <td class="right" width="30" style="padding-right:10px">
+                                <div id="bench_mark_monthactive-100414" class="relative fmk" style="z-index:98">
+                                	<a href="javascript:void(0)" class="bottun4 nonehover" onclick=""><font>B</font></a>
+                                </div>
+                            </td>
+  						</tr>
+                        <tr>
+  							<td class="left"><div class="tdtxtwidth l">月留存率</div></td>
+  							<td class="center"><div class="tdtxtwidth"><strong id="100514"></strong></div></td>
+                          	<td class="right" width="30" style="padding-right:10px">
+                                <div id="bench_mark_monthkeepuser-100514" class="relative fmk" style="z-index:97">
+                                	<a href="javascript:void(0)" class="bottun4 nonehover" onclick=""><font>B</font></a>
+                                </div>
+                            </td>
+  						</tr>
+  					</tbody></table>
+                </div>
+            </div>
+            <div class="clear"></div>
+    </div>
+  
+</div>
+{% endblock %}
