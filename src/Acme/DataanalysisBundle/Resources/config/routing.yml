@@ -1,3 +1,0 @@
-acme_dataanalysis_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: AcmeDataanalysisBundle:Default:index }

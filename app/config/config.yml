@@ -66,4 +66,17 @@ fos_user:
      user_class: Acme\UserBundle\Entity\User
      group:
          group_class: Acme\UserBundle\Entity\Group
+
+vich_uploader:
+    db_driver: orm # or mongodb
+
+knp_gaufrette:
+    adapters:
+        product_adapter:
+            local:
+                directory: %kernel.root_dir%/../web/images/products
+
+    filesystems:
+        product_image_fs:
+            adapter:    product_adapter
     

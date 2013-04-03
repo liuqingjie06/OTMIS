@@ -24,12 +24,9 @@ class AppKernel extends Kernel
         	new FOS\UserBundle\FOSUserBundle(),
             new Acme\UserBundle\AcmeUserBundle(),
             new Acme\TestBundle\AcmeTestBundle(),
-            new Acme\AdminBundle\AcmeAdminBundle(),
-            new Acme\EquipmentBundle\AcmeEquipmentBundle(),
-            new Acme\SafetyBundle\AcmeSafetyBundle(),
-            new Acme\OfficialBundle\AcmeOfficialBundle(),
-            new Acme\DataanalysisBundle\AcmeDataanalysisBundle(),
-            new Acme\ServiceBundle\AcmeServiceBundle(),
+        	new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
+        	new Vich\UploaderBundle\VichUploaderBundle(),
+            new Acme\TryBundle\AcmeTryBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

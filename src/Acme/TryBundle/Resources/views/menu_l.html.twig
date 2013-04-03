@@ -1,0 +1,22 @@
+<div class="menu l">
+	<ul>
+	{% for item1 in submenu %}
+		<li><a herf="#"  id="{{ menu[item1.key].class }}close" onclick="menu(this,'{{ menu[item1.key].class }}','{{ menu[item1.key].class }}close')" class="more_icon User">
+			<span><font>{{ menu[item1.key].name }}</font></span></a>		
+			<ol id="{{ menu[item1.key].class }}ol">
+				{% for item2 in item1.arr %}
+				<li> <a href="#" id="PartnerData" class="PartnerData">{{ menu[item2.key].name }}</a></li>
+				{% endfor %}	
+			</ol>
+		</li>
+		{% endfor %}         
+     </ul>
+</div>
+
+
+
+{# 					<ol>#}
+{# 						{% for item3 in item2.arr %}#}
+{# 							<li>    3级菜单 {{ menu[item3.key].name }} </li>#}
+{# 						{% endfor %}#}
+{# 					</ol>#}
