@@ -5,3 +5,7 @@ acme_test_homepage:
 acme_test_main:
     pattern:  /test/main
     defaults: { _controller: AcmeTestBundle:Default:main }
+
+acme_test_showmain:
+    pattern: /show/main
+    defaults: { _controller: AcmeTestBundle:Showdata:index }
