@@ -14,7 +14,15 @@
            
 		<div class="nav r" style="padding-right:10px">
               <font>
-                  <a href="#" id="logincenter">登出</a>
+{#                   <a href="#" id="logincenter">登出</a>#}
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {{ app.user.username }} |
+                <a href="{{ path('fos_user_security_logout') }}">
+                {{ '退出'|trans({}, 'FOSUserBundle') }}
+                </a>
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            {% endif %}
               </font>
          </div>
 	</div>

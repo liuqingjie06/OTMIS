@@ -18,6 +18,13 @@ class User extends BaseUser
 	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */
 	protected $id;
+	
+	/**
+	 * @ORM\age
+	 * @ORM\Column(type="integer")
+	 * 
+	 */
+	protected $age;
 
 	public function __construct()
 	{
