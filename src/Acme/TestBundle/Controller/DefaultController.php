@@ -13,8 +13,6 @@ class DefaultController extends Controller
     
     public function mainAction()
     {
-    	$hello=$this->get('hello');
-    	echo $hello->show("liuqingjie");
     	return $this->render('AcmeTestBundle:Default:mainpage.html.twig');
     }
 }
