@@ -9,38 +9,30 @@
 {% endblock %}
 
 {% block content%}
-<table>
-	<tr><td>编号</td><td>菜单名称</td><td>父菜单编号</td><td>是否有子菜单</td></tr>
-	{% for item in menu %}	
-		<tr><td>{{ item.id }}</td><td>{{ item.name }}</td><td>{{ item.fatherid }}</td>
-		<td>{{ item.hasson }}</td></tr>
-	{% endfor %}
-</table>
-
-<ul>
-{% for item1 in submenu %}
-	<li>1 {{ menu[item1.key].name }}</li>
-		<ol>
-			{% for item2 in item1.arr %}
-			<li>  2  {{ menu[item2.key].name }}	</li>
-				<ol>
-					{% for item3 in item2.arr %}
-						<li>    3级菜单 {{ menu[item3.key].name }} </li>
-{# 					<pre>/{ dump(item2) }}</pre>#}
-					{% endfor %}
-				</ol>
-			{% endfor %}	
-		</ol>
-{% endfor %}
-</ul>
-
-{# {# <table>#}
+{# <table>#}
 {# 	<tr><td>编号</td><td>菜单名称</td><td>父菜单编号</td><td>是否有子菜单</td></tr>#}
-{# 	{% for item in fathermenu %}	#}
+{# 	{% for item in menu %}	#}
 {# 		<tr><td>{{ item.id }}</td><td>{{ item.name }}</td><td>{{ item.fatherid }}</td>#}
 {# 		<td>{{ item.hasson }}</td></tr>#}
 {# 	{% endfor %}#}
 {# </table>#}
 
+{# <ul>#}
+{# {% for item1 in submenu %}#}
+{# 	<li>1 {{ menu[item1.key].name }}</li>#}
+{# 		<ol>#}
+{# 			{% for item2 in item1.arr %}#}
+{# 			<li>  2  {{ menu[item2.key].name }}	</li>#}
+{# 				<ol>#}
+{# 					{% for item3 in item2.arr %}#}
+{# 						<li>    3级菜单 {{ menu[item3.key].name }} </li>#}
+
+{# 					{% endfor %}#}
+{# 				</ol>#}
+{# 			{% endfor %}	#}
+{# 		</ol>#}
+{# {% endfor %}#}
+{# </ul>#}
+<pre>{{ dump(file) }}</pre>
 
 {% endblock %}

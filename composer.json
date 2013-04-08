@@ -20,7 +20,8 @@
         "jms/di-extra-bundle": "1.2.*",
          "friendsofsymfony/user-bundle": "*",
          "vich/uploader-bundle": "dev-master",
-         "knplabs/knp-gaufrette-bundle" : "dev-master"
+         "knplabs/knp-gaufrette-bundle" : "dev-master",
+         "querypath/QueryPath": ">=2.0.0"
     },
     "scripts": {
         "post-install-cmd": [

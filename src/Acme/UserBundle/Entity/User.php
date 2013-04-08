@@ -20,12 +20,6 @@ class User extends BaseUser
 	 */
 	protected $id;
 	
-	/**
-	 * 
-	 * @ORM\Column(type="integer")
-	 * 
-	 */
-	protected $age;
 
 
 	public function __construct()

@@ -1,5 +1,5 @@
 {
-    "hash": "cdb2b54cc8b8e5c093239c8092307153",
+    "hash": "e48df0a66c05af38464013951cf7fbcc",
     "packages": [
         {
             "name": "doctrine/common",
@@ -866,6 +866,47 @@
                 "logging"
             ],
             "time": "1350121319"
+        },
+        {
+            "name": "querypath/QueryPath",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/technosophos/querypath.git",
+                "reference": "5a84423518aba915e778caf9a7b24668e8bb103b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/technosophos/querypath/zipball/5a84423518aba915e778caf9a7b24668e8bb103b",
+                "reference": "5a84423518aba915e778caf9a7b24668e8bb103b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "time": "1363803369",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "QueryPath": "src/"
+                },
+                "files": [
+                    "src/qp_functions.php"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "HTML/XML querying (CSS 4 or XPath) and processing (like jQuery)",
+            "homepage": "https://github.com/technosophos/querypath",
+            "keywords": [
+                "xml",
+                "jquery",
+                "css",
+                "html",
+                "xslt"
+            ]
         },
         {
             "name": "sensio/distribution-bundle",

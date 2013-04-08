@@ -9,3 +9,7 @@ acme_test_main:
 acme_test_showmain:
     pattern: /show/main
     defaults: { _controller: AcmeTestBundle:Showdata:index }
+
+acme_test_getdata:
+    pattern: /show/getdata
+    defaults: { _controller: AcmeTestBundle:Showdata:getData }
