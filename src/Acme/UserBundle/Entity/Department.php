@@ -11,6 +11,7 @@ namespace Acme\UserBundle\Entity;
 
 use Acme\UserBundle\Model\DepartmentInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Acme\UserBundle\Entity\Department
@@ -31,7 +32,7 @@ class Department implements DepartmentInterface
     private $id;
 
     /**
-     * @ORM\Column(name="name",type="string",length="255")
+     * @ORM\Column(name="name",type="string",length=255)
      * 
      */
     private $name;
@@ -41,6 +42,23 @@ class Department implements DepartmentInterface
      *
      */
     private $fatherid;
+    
+    /**
+     * use Doctrine\Common\Collections\ArrayCollection;
+     */
+    
+    
+    /**
+     * @ORM\OneToMany(targetEntity="user", mappedBy="department")
+     */
+    protected $user;
+    
+    
+    public function __construct()
+    {
+    	$this->user = new ArrayCollection();
+    }
+    
     
     /**
      * Get id
@@ -72,25 +90,61 @@ class Department implements DepartmentInterface
     	$this->name = $name;
     	return $this;
     }
-    
+      
+
     /**
-     * get fatherid
-     * @return integer
+     * Set fatherid
+     *
+     * @param integer $fatherid
+     * @return Department
+     */
+    public function setFatherId($fatherid)
+    {
+        $this->fatherid = $fatherid;
+    
+        return $this;
+    }
+
+    /**
+     * Get fatherid
+     *
+     * @return integer 
      */
     public function getFatherId()
     {
-    	return $this->fatherid;
+        return $this->fatherid;
     }
-    
-    
+
     /**
-     * set fatherid
+     * Add user
+     *
+     * @param Acme\UserBundle\Entity\user $user
      * @return Department
      */
-    public function setFatherId($id)
+    public function addUser(\Acme\UserBundle\Entity\user $user)
     {
-    	$this->fatherid = $id;
-    	return $this;
-    }
+        $this->user[] = $user;
     
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param Acme\UserBundle\Entity\user $user
+     */
+    public function removeUser(\Acme\UserBundle\Entity\user $user)
+    {
+        $this->user->removeElement($user);
+    }
+
+    /**
+     * Get user
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }
