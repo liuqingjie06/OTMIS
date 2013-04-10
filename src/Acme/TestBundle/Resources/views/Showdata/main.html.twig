@@ -1,0 +1,33 @@
+{% extends 'AcmeTestBundle::layout.html.twig' %}
+
+{% block header %}
+{% include "AcmeTestBundle:Default:header.html.twig" %}
+{% endblock %}
+
+{% block menu %}
+{% include "AcmeTestBundle:Default:menu_l.html.twig" %}
+{% endblock %}
+
+{% block content%}
+<button class="clickbuton" id="showbutton1">高低</button>
+<button class="clickbuton" id="showbutton2">水平</button>
+<button class="clickbuton" id="showbutton2">三角坑</button>
+
+
+<div class="content l" id="right">
+</div>
+
+
+<script type="text/javascript">
+	$("#showbutton1").click(function(){
+		htmlobj=$.ajax({url:"{{ url('acme_test_getdata') }}?zoom=1",async:false});
+		  $("#right").html(htmlobj.responseText);
+		});
+	
+	$("#showbutton2").click(function(){
+		htmlobj=$.ajax({url:"{{ url('acme_test_getdata') }}?zoom=2",async:false});
+		  $("#right").html(htmlobj.responseText);
+		});
+</script>
+<script src="{{ asset('bundles/acmetest/js/highcharts.js') }}"></script> 
+{% endblock %}

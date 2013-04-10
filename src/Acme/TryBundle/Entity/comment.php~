@@ -1,0 +1,43 @@
+<?php
+
+namespace Acme\TryBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Acme\TryBundle\Entity\comment
+ *
+ * @ORM\Table(name="comment")
+ * @ORM\Entity
+ */
+class comment
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(name="comment",type="text")
+     * 
+     *
+     */
+    private $comment;
+    
+    /**
+     * @ORM\Column(name="uid",type="integer")
+     */
+    
+    private $uid;
+    
+    /**
+     * @ORM\Column(name="date",type="datetime")
+     */
+    
+    private $date;
+    
+}

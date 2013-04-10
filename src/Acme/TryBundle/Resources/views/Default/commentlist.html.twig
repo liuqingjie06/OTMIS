@@ -1,0 +1,22 @@
+<table border="1">
+<tr><td>id</td><td>用户</td><td>内容</td><td>日期</td></tr>
+{% for item in comment %}
+
+<tr>
+	<td>{{ item.id }}</td>
+	<td>{{ item.uid }}</td>
+	<td>{{ item.comment }}</td>
+	{% if is_granted('VIEW', item) %}
+	<td>{{ item.date|date("Y-m-d") }}</td>
+	<td> <a>编辑</a> </td>
+		{% endif %}
+</tr>
+
+{% endfor %}
+</table>
+
+{{ dump(role) }}
+
+
+
+<a href="{{ url('comment') }}">添加评论</a>

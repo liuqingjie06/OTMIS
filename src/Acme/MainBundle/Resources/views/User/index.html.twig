@@ -1,0 +1,62 @@
+{% extends 'AcmeMainBundle::layout.html.twig' %}
+
+{% block header %}
+{% include "AcmeMainBundle::header.html.twig" %}
+{% endblock %}
+
+{% block menu %}
+{% include "AcmeMainBundle::menu_l.html.twig" %}
+{% endblock %}
+
+{% block content%}
+<div class="content l" id="right">
+	 <div class="box">
+	 	<div class="contentbox l">
+	 		<div class="title" >
+		 			<strong class="1">记录工作的点点滴滴</strong>
+		 			<span class="r"></span>
+		 	</div>
+		 	<form>
+	 			<textarea   style="margin: 1px 0px 0px; padding: 5px; border-style: none; border-width: 0px; font-size: 14px; 
+						font-family: Tahoma, 宋体; width:100%; ">
+	 			</textarea>
+	 			<input type="submit" value="提交" />
+	 		</form>
+	 	 </div>
+	 	 <div class="contentbox r">
+	 		<div class="title" >
+	 			<strong class="1">我的工作纪实</strong>
+	 			<span class="l"></span>
+	 		</div>
+	 	
+		 	<div class="textbox" >
+		 		<div class="dataTables_wrapper">
+		 		<table class="table_style1">
+		 			<thead>
+		 				<tr>
+		 					<th class="sorting_disabled left">编号</th>
+		 					<th class="sorting_disabled center">记录日期</th>
+		 					<th class="sorting_disabled center">内容</th>	
+		 					
+		 					<th>重要程度</th>
+		 					<th class="sorting_disabled right">管理</th>
+		 				</tr>
+		 			</thead>
+		 			<tbody>
+	{# 	 				{% for %}#}
+		 					<tr>
+		 						<td>1</td>
+		 						<td>2013-12-13</td>
+		 						<td>今天开始新的工作，抛弃过去，面向未来</td>
+		 						<td>五颗星</td>
+		 						<td><a>编辑</a></td>
+		 					</tr>
+	{# 	 				{% endfor %}#}
+		 			</tbody>		 		
+		 		</table>
+		 		</div>
+	 		</div>
+	 	</div> 
+	</div>
+</div>
+{% endblock %}
