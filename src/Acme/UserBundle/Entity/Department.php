@@ -38,11 +38,17 @@ class Department implements DepartmentInterface
      */
     private $name;
     
+    
     /**
-     * @ORM\Column(name="fatherid",type="integer")
-     *
-     */
-    private $fatherid;
+     * OR_FIXME 部门自引用有问题
+     * @ORM\Column(name="fatherid")
+     **/
+     private $fatherid;
+     
+     public $father;
+
+   
+    
     
     /**
      * use Doctrine\Common\Collections\ArrayCollection;

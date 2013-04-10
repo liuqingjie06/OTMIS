@@ -24,9 +24,16 @@ class DepartmentController extends Controller
     	/*
     	 * OR_TODO 添加部门列表的查看
     	 */
+    	$repository = $this->getDoctrine()->getRepository('AcmeUserBundle:Department');
+    	$department = $repository->findAll();
+    	
+    	foreach($department as $item){
+    		//利用fatherid查找其子部门
+    		$item->father = $repository->findOneById($item->getFatherid());
+    	}
     	
     	
-        return array();
+        return array('department'=>$department);
     }
     
     

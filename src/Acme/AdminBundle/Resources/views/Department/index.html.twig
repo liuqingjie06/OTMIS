@@ -10,4 +10,22 @@
 
 {% block content%}
 <h1> 部门列表  </h1>
+<table>
+	<tr>
+		<td>部门编号</td><td>部门名称</td><td>上级主管</td>
+	</tr>
+{% for item in department %}
+	<tr>
+		<td>{{ item.id }}</td>
+		<td>{{ item.name }}</td>
+		<td>{% if item.fatherid>0 %}
+		{{ item.father.name }}
+		{% else %}
+		直属
+		{% endif %}</td>
+	</tr>
+{% endfor %}
+
+</table>
+
 {% endblock %}
