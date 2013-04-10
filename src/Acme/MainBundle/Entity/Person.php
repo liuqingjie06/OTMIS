@@ -30,44 +30,49 @@ class Person
 	protected $id;
 	
 	/**
-	 * @ORM\Column(name="zhicheng",type="string")
+	 * @ORM\Column(name="realname",type="string")
+	 */
+	protected $realname;
+	
+	/**
+	 * @ORM\Column(name="zhicheng",type="string" ,nullable=TRUE)
 	 * 职称
 	 */
 	protected $zhicheng;
 
 	/**
-	 * @ORM\Column(name="sex",type="string")
+	 * @ORM\Column(name="sex",type="string", nullable=TRUE)
 	 * 性别
 	 */
 	protected $sex;
 
 	/**
-	 * @ORM\Column(name="level",type="string")
+	 * @ORM\Column(name="level",type="string" ,nullable=TRUE)
 	 * 级别
 	 */
 	protected $level;
 
 	/**
-	 * @ORM\Column(name="skill",type="string")
+	 * @ORM\Column(name="skill",type="string", nullable=TRUE)
 	 * 专业技术资格
 	 */
 	protected $skill;
 	
 
 	/**
-	 * @ORM\Column(name="birthday",type="date")
+	 * @ORM\Column(name="birthday",type="date",nullable=TRUE)
 	 * 出生年月
 	 */
 	protected $birthday;
 
 	/**
-	 * @ORM\Column(name="joinday",type="date")
+	 * @ORM\Column(name="joinday",type="date",nullable=TRUE)
 	 * 参加工作时间
 	 */
 	protected $joinday;
 
 	/**
-	 * @ORM\Column(name="politics",type="string")
+	 * @ORM\Column(name="politics",type="string",nullable=TRUE)
 	 * 政治面貌
 	 */
 	protected $politics;
@@ -271,5 +276,28 @@ class Person
     public function getRemark()
     {
         return $this->remark;
+    }
+
+    /**
+     * Set realname
+     *
+     * @param string $realname
+     * @return Person
+     */
+    public function setRealname($realname)
+    {
+        $this->realname = $realname;
+    
+        return $this;
+    }
+
+    /**
+     * Get realname
+     *
+     * @return string 
+     */
+    public function getRealname()
+    {
+        return $this->realname;
     }
 }
