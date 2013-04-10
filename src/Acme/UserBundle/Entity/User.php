@@ -20,11 +20,6 @@ class User extends BaseUser
 	 */
 	protected $id;
 	
-	/**
-	 * @ORM\Column(type="integer")
-	 *
-	 */
-	protected $id;
 
 
 	public function __construct()
@@ -38,7 +33,17 @@ class User extends BaseUser
      * @ORM\JoinColumn(name="department_id", referencedColumnName="id")
      */
     protected $department;
-
+    
+    /**
+     * @ORM\OneToOne(targetEntity="Acme\MainBundle\Entity\Person")
+     * @ORM\JoinColumn(name="person_id", referencedColumnName="id")
+     */
+    protected $person;
+    
+    /**
+     * @ORM\Column(name="realname",type="string")
+     */
+	protected $realname;
 
     /**
      * Get id
@@ -71,5 +76,51 @@ class User extends BaseUser
     public function getDepartment()
     {
         return $this->department;
+    }
+
+    /**
+     * Set realname
+     *
+     * @param string $realname
+     * @return User
+     */
+    public function setRealname($realname)
+    {
+        $this->realname = $realname;
+    
+        return $this;
+    }
+
+    /**
+     * Get realname
+     *
+     * @return string 
+     */
+    public function getRealname()
+    {
+        return $this->realname;
+    }
+
+    /**
+     * Set person
+     *
+     * @param Acme\UserBundle\Entity\Person $person
+     * @return User
+     */
+    public function setPerson(\Acme\UserBundle\Entity\Person $person = null)
+    {
+        $this->person = $person;
+    
+        return $this;
+    }
+
+    /**
+     * Get person
+     *
+     * @return Acme\UserBundle\Entity\Person 
+     */
+    public function getPerson()
+    {
+        return $this->person;
     }
 }

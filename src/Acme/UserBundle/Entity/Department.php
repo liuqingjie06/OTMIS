@@ -12,6 +12,7 @@ namespace Acme\UserBundle\Entity;
 use Acme\UserBundle\Model\DepartmentInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Acme\UserBundle\Entity\User;
 
 /**
  * Acme\UserBundle\Entity\Department
@@ -49,7 +50,7 @@ class Department implements DepartmentInterface
     
     
     /**
-     * @ORM\OneToMany(targetEntity="user", mappedBy="department")
+     * @ORM\OneToMany(targetEntity="User", mappedBy="department")
      */
     protected $user;
     
@@ -91,30 +92,6 @@ class Department implements DepartmentInterface
     	return $this;
     }
       
-
-    /**
-     * Set fatherid
-     *
-     * @param integer $fatherid
-     * @return Department
-     */
-    public function setFatherId($fatherid)
-    {
-        $this->fatherid = $fatherid;
-    
-        return $this;
-    }
-
-    /**
-     * Get fatherid
-     *
-     * @return integer 
-     */
-    public function getFatherId()
-    {
-        return $this->fatherid;
-    }
-
     /**
      * Add user
      *
@@ -146,5 +123,28 @@ class Department implements DepartmentInterface
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set fatherid
+     *
+     * @param integer $fatherid
+     * @return Department
+     */
+    public function setFatherid($fatherid)
+    {
+        $this->fatherid = $fatherid;
+    
+        return $this;
+    }
+
+    /**
+     * Get fatherid
+     *
+     * @return integer 
+     */
+    public function getFatherid()
+    {
+        return $this->fatherid;
     }
 }

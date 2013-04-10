@@ -35,13 +35,13 @@ interface DepartmentInterface
     /**
      * @return integer
      */
-    public function getFatherId();
+    public function getFatherid();
     
     /**
      * @param integer $id
      * 
      * @return iteger
      */
-    public function setFatherId($id);
+    public function setFatherid($id);
 
 }
