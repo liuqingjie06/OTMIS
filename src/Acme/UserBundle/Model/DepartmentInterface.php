@@ -7,19 +7,13 @@
  * 部门管理接口
  */
 
-namespace Acme\UserBundl\Model;
+namespace Acme\UserBundle\Model;
 
 /**
  * @author liuqingjie6<liuqingjie06@yahoo.com.cn>
  */
 interface DepartmentInterface
 {
-     /**
-     * @param string $role
-     *
-     * @return self
-     */
-    public function addRole($role);
 
     /**
      * @return integer
