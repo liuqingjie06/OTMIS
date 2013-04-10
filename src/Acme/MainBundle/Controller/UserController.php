@@ -8,7 +8,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 /**
  * 
  * @author admin
- * @data 2013-4-10
  * 用于用户管理页面的控制器
  * 
  *
@@ -16,43 +15,44 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class UserController extends Controller
 {
     /**
-     * @Route("/User" ,name="main_user")
+     * @Route("/User", name="main_user")
      * @Template()
      */
     public function indexAction()
     {
     	/**
-    	 * @todo 用户管理的主页，添加相应的代码
+    	 * OR_TODO 用户管理的主页，添加相应的代码
     	 */
         return array();
     }
     
     /**
-     * @Route("/User/work" ,name="main_user_work")
+     * @Route("/User/work" , name="main_user_work")
      * @Template()
      */
     public function workAction()
     {
     	/**
-    	 * @todo 工作管理，从数据库中读取与自己相关的信息和文件
+    	 * OR_TODO 工作管理，从数据库中读取与自己相关的信息和文件
     	 */
     }
     
     /**
-     * @Route("/User" ,name="main_user")
+     * @Route("/User/Journal" , name="main_user_journal")
      * @Template()
      */
     public function journalActoin()
     {
     	/**
-    	 * @todo 工作纪实主页，要从数据库中读取工作纪实的文件
+    	 * OR_TODO 此处添加工作纪实Action代码
     	 */
     }
     
-    public function changePasswordAction()
+    public function journalEditAction()
     {
     	/**
-    	 * @todo 修改密码页面，添加相关代码
-    	 */
+    	 *OR_TODO 此处添加编辑工作纪实action代码
+    	 */	
     }
+    
 }
