@@ -35,7 +35,7 @@ class User extends BaseUser
     protected $department;
     
     /**
-     * @ORM\OneToOne(targetEntity="Acme\MainBundle\Entity\Person")
+     * @ORM\OneToOne(targetEntity="Acme\UserBundle\Entity\Person")
      * @ORM\JoinColumn(name="person_id", referencedColumnName="id")
      */
     protected $person;

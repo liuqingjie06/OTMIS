@@ -18,7 +18,8 @@ acme_test:
     prefix:   /
 
 acme_user:
-    resource: "@AcmeUserBundle/Resources/config/routing.yml"
+    resource: "@AcmeUserBundle/Controller/"
+    type:      annotation
     prefix:   /
 
 # Internal routing configuration to handle ESI

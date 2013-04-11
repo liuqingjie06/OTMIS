@@ -16,9 +16,9 @@ use Acme\UserBundle\Entity\User;
 
 /**
  * Acme\UserBundle\Entity\Department
- *
- * @ORM\Table(name="department")
  * @ORM\Entity
+ * @ORM\Table(name="department")
+ * 
  */
 
 class Department implements DepartmentInterface
@@ -40,8 +40,7 @@ class Department implements DepartmentInterface
     
     
     /**
-     * OR_FIXME 部门自引用有问题
-     * @ORM\Column(name="fatherid")
+     * @ORM\Column(name="fatherid", type="integer")
      **/
      private $fatherid;
      

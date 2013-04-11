@@ -6,7 +6,8 @@
  * date: 2013-4-10
  * 用户管理表与用户表1对1关系，是用户表的补充
  */
-namespace Acme\MainBundle\Entity;
+namespace Acme\UserBundle\Entity;
+
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -30,7 +31,8 @@ class Person
 	protected $id;
 	
 	/**
-	 * @ORM\Column(name="realname",type="string")
+	 * @ORM\Column(name="realname",type="string", nullable=TRUE)
+	 * 姓名
 	 */
 	protected $realname;
 	

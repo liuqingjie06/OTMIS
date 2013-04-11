@@ -1,0 +1,24 @@
+{% extends 'AcmeMainBundle::layout.html.twig' %}
+
+{% block header %}
+{% include "AcmeMainBundle::header.html.twig" %}
+{% endblock %}
+
+{% block menu %}
+{% include "AcmeMainBundle::menu_l.html.twig" %}
+{% endblock %}
+
+{% block content%}
+	<div class="maxbox">
+		<form>
+		<ul>
+			<li>编号<input type="text" class=""/>*</li>
+			<li>姓名<input type="text" class=""/>*</li>
+			<li>出生年月<input type="text" class=""/></li>
+			<li>姓名<input type="text" class=""/></li>
+		</ul>
+		</form>
+	</div>
+	
+
+{% endblock %}

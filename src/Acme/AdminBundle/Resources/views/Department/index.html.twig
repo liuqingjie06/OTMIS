@@ -12,7 +12,7 @@
 <h1> 部门列表  </h1>
 <table>
 	<tr>
-		<td>部门编号</td><td>部门名称</td><td>上级主管</td>
+		<td>部门编号</td><td>部门名称</td><td>上级主管</td><td>成员</td>
 	</tr>
 {% for item in department %}
 	<tr>
@@ -23,6 +23,11 @@
 		{% else %}
 		直属
 		{% endif %}</td>
+		<td>
+			{% for user in item.user %}
+			<font>{{ user.person.realname }}<font>|
+			{% endfor %}
+		</td>
 	</tr>
 {% endfor %}
 
