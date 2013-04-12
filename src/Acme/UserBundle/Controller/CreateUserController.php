@@ -11,21 +11,56 @@ namespace Acme\UserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
+use Acme\UserBundle\Entity\User;
+use Acme\UserBundle\Form\Type\UserType;
 
 class CreateUserController extends Controller
 {
-
 	/**
 	 * @Route("/admin/createuser" ,  name="create_user")
 	 * @Template()
 	 */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
     	/*
-    	 * OR_TODO 创建用户
+    	 * OR_TODO 创建用户功能
     	 */
-    	return array();
+    	$user = new User();
+    	$user->setEmail('2@1.com')
+    		->setPlainPassword('111111')
+    		->setEnabled(TRUE);
+    	
+    	$form = $this->createForm(new UserType(), $user);
+    	if ($request->isMethod('POST')) {
+    		$form->bind($request);
+    	
+    		if ($form->isValid()) {
+    			/**
+    			 * OR_TODO  提交表单并更新数据库
+    			 */
+    			
+    			$em = $this->getDoctrine()->getManager();
+    			$em->persist($user->getPerson());
+    			$em->persist($user);
+    			$em->flush();
+    			return $this->redirect($this->generateUrl('task_success'));
+    			
+    			
+    		}
+    	}
+    	return array('form' => $form->createView());
 
+    }
+    
+    /**
+     * @Route("/admin/createuser/success" ,  name="task_success")
+     * @Template()
+     */
+    public function successAction()
+    {
+    	//创建用户成功
+    	return array();
     }
     
     

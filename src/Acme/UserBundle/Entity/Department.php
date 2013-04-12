@@ -65,6 +65,11 @@ class Department implements DepartmentInterface
     	$this->user = new ArrayCollection();
     }
     
+    public function __toString()
+    {
+    	return $this->name;
+    }
+    
     
     /**
      * Get id

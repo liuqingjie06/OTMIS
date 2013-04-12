@@ -21,7 +21,6 @@ class User extends BaseUser
 	protected $id;
 	
 
-
 	public function __construct()
 	{
 		parent::__construct();
@@ -40,10 +39,6 @@ class User extends BaseUser
      */
     protected $person;
     
-    /**
-     * @ORM\Column(name="realname",type="string")
-     */
-	protected $realname;
 
     /**
      * Get id

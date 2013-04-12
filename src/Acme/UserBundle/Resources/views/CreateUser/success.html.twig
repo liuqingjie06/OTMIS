@@ -9,12 +9,7 @@
 {% endblock %}
 
 {% block content%}
-	<div class="maxbox">
-		<form action="{{ url('create_user') }}" method="post" {{ form_enctype(form) }}>
-			{{ form_widget(form) }}
-			<div><input type="submit" /></div>
-		</form>
-	</div>
+	<h1>成功创建用户</h1>
 	
 
 {% endblock %}
