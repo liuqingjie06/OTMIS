@@ -15,13 +15,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Acme\UserBundle\Entity\User;
 use Acme\UserBundle\Form\Type\UserType;
 
-class CreateUserController extends Controller
+class UserManageController extends Controller
 {
 	/**
 	 * @Route("/admin/createuser" ,  name="create_user")
 	 * @Template()
 	 */
-    public function indexAction(Request $request)
+    public function createAction(Request $request)
     {
     	/*
     	 * OR_TODO 创建用户功能
@@ -44,7 +44,7 @@ class CreateUserController extends Controller
     			$em->persist($user->getPerson());
     			$em->persist($user);
     			$em->flush();
-    			return $this->redirect($this->generateUrl('task_success'));
+    			return $this->redirect($this->generateUrl('user'));
     			
     			
     		}
@@ -54,13 +54,15 @@ class CreateUserController extends Controller
     }
     
     /**
-     * @Route("/admin/createuser/success" ,  name="task_success")
+     * @Route("/admin/user" ,  name="user")
      * @Template()
      */
-    public function successAction()
+    public function indexAction()
     {
     	//创建用户成功
-    	return array();
+    	$repository = $this->getDoctrine()->getRepository('AcmeUserBundle:User');
+    	$user = $repository->findAll();
+    	return array('user' => $user);
     }
     
     

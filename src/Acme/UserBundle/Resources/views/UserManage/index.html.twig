@@ -1,0 +1,45 @@
+{% extends 'AcmeMainBundle::layout.html.twig' %}
+
+{% block header %}
+{% include "AcmeMainBundle::header.html.twig" %}
+{% endblock %}
+
+{% block menu %}
+{% include "AcmeMainBundle::menu_l.html.twig" %}
+{% endblock %}
+
+{% block content%}
+<table>
+  <tr>
+    <th>用户编号</th>
+    <th>姓名</th>
+    <th>性别</th>
+    <th>职称</th>
+    <th>级别</th>
+    <th>专业技术资格</th>
+    <th>出生日期</th>
+    <th>参加工作日期</th>
+    <th>政治面貌</th>
+    <th>备注</th>
+    <th>操作</th>
+  </tr>
+  {% for item in user %}
+  <tr>
+    <td>{{ item.username }}</td>
+    <td>{{ item.person.realname }}</td>
+    <td>{{ item.person.sex }}</td>
+    <td>{{ item.person.zhicheng }}</td>
+    <td>{{ item.person.level }}</td>
+    <td>{{ item.person.skill }}</td>
+    <td>{{ item.person.birthday|date("Y-m-d") }}</td>
+    <td>{{ item.person.joinday|date("Y-m-d") }}</td>
+    <td>{{ item.person.politics }}</td>
+    <td>{{ item.person.remark }}</td>
+    <td>修改 删除</td>
+  </tr>
+  {% endfor %}
+</table>
+<a href="{{ url('create_user') }}"><font>添加新用户</font></a>
+
+
+{% endblock %}
