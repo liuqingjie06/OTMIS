@@ -21,7 +21,8 @@
          "friendsofsymfony/user-bundle": "*",
          "vich/uploader-bundle": "dev-master",
          "knplabs/knp-gaufrette-bundle" : "dev-master",
-         "querypath/QueryPath": ">=2.0.0"
+         "querypath/QueryPath": ">=2.0.0"，
+         "gedmo/doctrine-extensions": "2.3.*@dev"
     },
     "scripts": {
         "post-install-cmd": [
