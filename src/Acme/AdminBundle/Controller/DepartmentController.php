@@ -36,5 +36,12 @@ class DepartmentController extends Controller
         return array('department'=>$department);
     }
     
+    /**
+     * @Route("/{demaprtment}/" ,  name="admin_department_user")
+     * @Template()
+     */
+    public function DepartmentUserAction()
+    {
+    
     
 }
