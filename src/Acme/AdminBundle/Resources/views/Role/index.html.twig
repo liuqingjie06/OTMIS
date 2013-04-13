@@ -1,0 +1,33 @@
+{% extends 'AcmeMainBundle::layout.html.twig' %}
+
+{% block header %}
+{% include "AcmeMainBundle::header.html.twig" %}
+{% endblock %}
+
+{% block menu %}
+{% include "AcmeMainBundle::menu_l.html.twig" %}
+{% endblock %}
+
+{% block content%}
+<table border="1">
+	<tr>
+		<th>id</th><th>username</th><th>role</th><th>激活</th><th>操作</th>
+	</tr>
+	{% for item in user %}
+	<tr>
+		<td>{{ item.id }}</td>
+		<td>{{ item.username }}</td>
+		<td>{% for role in item.roles %} {{ role }}</br>{% endfor %}</td>
+		<td>{% if item.enabled  != 1 %} 
+				<a href="{{ url('enable_user',{'userid':item.id})}}"  style="color:#555">激活</a>
+			{% else %}
+				<a href="{{ url('disable_user',{'userid':item.id})}}"  style="color:#555">冻结</a>
+			{% endif %}
+		</td>
+		<td><a href="{{ url('update_role',{'userid':item.id}) }}" style="color:#555">修改角色</a></td>
+	</tr>
+	
+	{% endfor %}
+</table>
+
+{% endblock %}
