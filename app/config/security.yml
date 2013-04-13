@@ -52,7 +52,7 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/test/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/User , role: ROLE_USER }
-        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/admin/, role: ROLE_USER }
         - { path: ^/admin/user/delate/, role: ROLE_PERSONADMIN }
         - { path: ^/admin/department/, role: ROLE_SUPERADMIN }
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
