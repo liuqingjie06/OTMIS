@@ -1,0 +1,51 @@
+{% extends 'AcmeMainBundle::layout.html.twig' %}
+
+{% block header %}
+{% include "AcmeMainBundle::header.html.twig" %}
+{% endblock %}
+
+{% block menu %}
+{% include "AcmeMainBundle::menu_l.html.twig" %}
+{% endblock %}
+
+{% block content%}
+<h1>{{ user.person.realname }} 的角色有</h1>
+<form action="{{ url('add_role',{'userid':user.id }) }}" method='post'>
+	<ul>
+		
+		{% if user.hasRole('ROLE_USER') %}
+			<li>用户<input type="checkbox" name="user" checked='true' /> </li>
+		{% else %}
+			<li>用户<input type="checkbox" name="user"  /> </li>
+		{% endif %}
+		
+		{% if user.hasRole('ROLE_ADMIN') %}
+			<li>管理员<input type="checkbox" name="admin" checked='true'/></li>
+		{% else %}
+			<li>管理员<input type="checkbox" name="admin" /></li>
+		{% endif %}
+		
+		{% if user.hasRole('ROLE_DEPARTMENTADMIN') %}
+			<li>部门管理员<input type="checkbox" name="departmentadmin" checked='true'/> </li>
+		{% else %}
+			<li>部门管理员<input type="checkbox" name="departmentadmin" /> </li>
+		{% endif %}
+		
+		{% if user.hasRole('ROLE_PERSONADMIN') %}
+			<li>人事科管理员<input type="checkbox" name="personadmin"checked='true'/> </li>
+		{% else %}
+			<li>人事科管理员<input type="checkbox" name="personadmin"/> </li>
+		{% endif %}
+		
+		{% if user.hasRole('ROLE_SUPERADMIN') %}
+			<li>超级管理员<input type="checkbox" name="superadmin" checked='true'/> </li>
+		{% else %}
+			<li>超级管理员<input type="checkbox" name="superadmin" /> </li>
+		{% endif %}
+
+		<input type="submit" value="提交"/>
+	
+	</ul>
+	<a href="{{ url('role_admin') }}">返回</a>
+</form>
+{% endblock %}
