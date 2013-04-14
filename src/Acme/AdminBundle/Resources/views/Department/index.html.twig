@@ -9,28 +9,90 @@
 {% endblock %}
 
 {% block content%}
-<h1> 部门列表  </h1>
-<table>
-	<tr>
-		<td>部门编号</td><td>部门名称</td><td>上级主管</td><td>成员</td>
-	</tr>
-{% for item in department %}
-	<tr>
-		<td>{{ item.id }}</td>
-		<td>{{ item.name }}</td>
-		<td>{% if item.fatherid>0 %}
-		{{ item.father.name }}
-		{% else %}
-		直属
-		{% endif %}</td>
-		<td>
-			{% for user in item.user %}
-			<font>{{ user.person.realname }}<font>|
-			{% endfor %}
-		</td>
-	</tr>
-{% endfor %}
+{# <h1> 部门列表  </h1>#}
+{# <table>#}
+{# 	<tr>#}
+{# 		<th>部门列表</th>#}
+{# 	</tr>#}
+{# 	{% for item in department %}#}
+{# 	<tr>#}
+{# 		<td>{{ item}}</td>#}
+{# 		<td>#}
+{# 		<form method="post" action="{{ url('create_department',{'parentid':item.id}) }}">#}
+{# 			<input type="text" name="name"/>#}
+{# 			<input type="submit" value="增加部门"/>#}
+{# 		</form>#}
+{# 		</td>#}
+{# 	</tr>	#}
+{# 	{% endfor %}#}
+{# 	<tr><td>#}
+{# 		<form method="post" action="{{ url('create_department',{'parentid':'null'}) }}">#}
+{# 			<input type="text" name="name"/>#}
+{# 			<input type="submit" value="增加部门"/>#}
+{# 		</form>#}
+{# 	</td></tr>#}
+{# </table>#}
+{# <pre>{{ dump(htmltree) }}</pre>#}
 
-</table>
+<h1>部门列表</h1>
+<div {% if htmltree|length > 0 %}style="display:none;"{% endif %}><li display="inline"/>
+	<form method="post" action="{{ url('create_department',{'parentid':'null'}) }}">
+			<input type="text" name="name"/>
+			<input type="submit" value="创建总部门"/>
+	</form>
+</li></div>
+
+<ul>
+{% for level1 in htmltree %}
+	<li display="inline" >
+	<form method="post" action="{{ url('create_department',{'parentid':level1.id}) }}">
+		<label>{{ level1.name }}</label>
+			<input type="text" name="name"/>
+			<input type="submit" value="增加部门"/>
+		<a href="{{ url('department_delete') }}?id={{ level1.id }}">删除部门</a>
+	</form>
+	</li>
+	
+	{% for level2 in level1.__children %}
+		<li display="inline" >
+			<form method="post" action="{{ url('create_department',{'parentid':level2.id}) }}">
+				<img src="{{ asset('bundles/acmetest/images/l.png') }}" />
+				<label>{{ level2.name }}</label>
+					<a href="{{ url('department_moveup') }}?id={{ level2.id }} ">向上</a>
+					<a href="{{ url('department_movedown') }}?id={{ level2.id }}">向下</a>
+				<input type="text" name="name"/>
+				<input type="submit" value="增加部门"/>
+				<a href="{{ url('department_delete') }}?id={{ level2.id }}">删除部门</a>
+			</form>
+		</li>
+		{% for level3 in level2.__children %}
+			<li display="inline" >
+			<form method="post" action="{{ url('create_department',{'parentid':level3.id}) }}">
+				<span>.......</span><img src="{{ asset('bundles/acmetest/images/l.png') }}" /> <label>{{ level3.name }}</label>
+					<a href="{{ url('department_moveup') }}?id={{ level3.id }} ">向上</a>
+					<a href="{{ url('department_movedown') }}?id={{ level3.id }}">向下</a>
+					<input type="text" name="name"/>
+				<input type="submit" value="增加部门"/>
+				<a href="{{ url('department_delete') }}?id={{ level3.id }}">删除部门</a>
+			</form>
+			</li>
+				{% for level4 in level3.__children %}
+				<li display="inline" >
+				<form method="post" action="{{ url('create_department',{'parentid':level4.id}) }}">
+					<span>.............</span><img src="{{ asset('bundles/acmetest/images/l.png') }}" /> <label>{{ level4.name }}</label>
+						<a href="{{ url('department_moveup') }}?id={{ level4.id }} ">向上</a>
+						<a href="{{ url('department_movedown') }}?id={{ level4.id }}">向下</a>
+					<input type="text" name="name"/>
+					<input type="submit" value="增加部门"/>
+					<a href="{{ url('department_delete') }}?id={{ level4.id }}">删除部门</a>
+				</form>
+				</li>
+				{% endfor %}
+			{% endfor %}
+		{% endfor %}
+		
+	{% endfor %}
+</ul>	
+
 
 {% endblock %}
