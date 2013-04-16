@@ -10,36 +10,36 @@
 
 {% block content%}
 <div class="content l" id="right">
-	<div class="box">
-		<div class="contentbox l" >
+	<div class="boxmax">
+{# 		<div class="contentbox l" >#}
 			<div class="title">
             		<strong class="l">线路情况</strong>
         			<span class="relative r" style="z-index:98">
-{#         				<a href="javascript:void(0)" class="bottun4" onclick="xytt('Addtable1','xy','Addcolse1')"><font>添加新线路</font>	</a>#}
+        				<a href="javascript:void(0)" class="bottun4" onclick="xytt('Addtable1','xy','Addcolse1')"><font>添加新线路</font>	</a>
         				<a href="javascript:void(0)" class="bottun4"><font>?</font></a>
         			</span>
                 </div>
 		 	<div class="textbox">
-		 		<table class="table_style2">
+		 		<table class="table_style2" style="width:100%">
 		 			<thead>
 		 				<tr>
 		 					<th class="center"><font style=" top:-2px; font-size:15px;" id="Psort0">编号</font></th>
 		 					<th class="center"><font style=" top:-2px; font-size:15px;" id="Psort0">线路名称</font></th>
-		 					<th class="center"><font style=" top:-2px; font-size:15px;" id="Psort0">操作</font></th>
+		 					<th class="center r" ><font style=" top:-2px; font-size:15px; padding-right:95px;" id="Psort0">操作</font></th>
 		 				</tr>
 		 			</thead>
 		 			<tbody>
 		 			{% for item in line %}
 		 				<tr>
-		 					<td class="center" style="width: 90px; min-width:>
-		 					<div class="tdtxtwidth l"  style="width: 190px; min-width: 24px;">{{ item.id }}</div></td>
-		 					<td class="center"  min-width: 24px;">
-		 					<div class="tdtxtwidth" title="1,075（0.9%）" style="width: 260px; min-width: 24px;"><strong>{{ item.name }}</strong></div></td>
-		 					<td class="right" style="padding-right:10px" >
-		 						<div class="relative fmk" style="z-index:96">
-                                	<a href="javascript:void(0)" class="bottun4" onclick="delate(this)"><font>查看线路情况</font></a>
+		 					<td class="center" style="min-width:24px">
+		 					<div class="tdtxtwidth"  style=" min-width: 24px;">{{ item.id }}</div></td>
+		 					<td class="center"  style="min-width:24px;">
+		 					<div class="tdtxtwidth" style=" min-width: 24px;"><strong>{{ item.name }}</strong></div></td>
+		 					<td class="center" style=" min-width: 24px" >
+		 						<div class="relative fmk r" style="z-index:96;">
+                                	<a href="javascript:void(0)" class="bottun4" onclick="delate(this)"><font>查看线路情况</font></a>                          
+                                	<a href="javascript:void(0)" class="bottun4" onclick="xytt('editTable','xy','editClose')"><font>修改</font></a>
                                 	<a href="javascript:void(0)" class="bottun4" onclick="delate(this)"><font>删除</font></a>
-                                	<a href="javascript:void(0)" class="bottun4" onclick="update(this)"><font>修改</font></a>
                                 </div>
 		 					</td>
 		 				</tr>
@@ -47,33 +47,67 @@
 		 			</tbody>
 		 		</table>
 		 	</div>
-		 </div>
-          <!-- 新建线路资料 -->
-		 <div class="contentbox r" >
-		 	<div class="title">
-            	<strong class="l">新建线路</strong>
-            	<span class="relative r" style="z-index:98"></span>
-            </div>
-            <div class="textbox">
-            	<form metho="post" action="{{ url('line_create') }}">
-            	
-            	<div class="tablee">
-            		<ul>
-	            		<li><label>线路名:</label><input class="text" type="text" name="name"/></li>
-	            		<li style="height:30px"><a href="javascript:void(0)" class="submitto" onclick="creaeline();"><font style="aligen:center;">创建线路</font></a></li>
-{# 	            		<a class="submitto" href="javascript:void(0)"><font>创建线路</font></a>#}
-            		</ul>
-{#             		<div><a href="javascript:void(0)" class="submitto" onclick="creaeline();"><font style="aligen:center;">创建线路</font></a>#}
-            	</div>
-            	</form>
-            </div>
-		 </div>
-		 
+			
 	</div>
 </div>
 
-<script type="text/javascript">
 
+
+<script type="text/javascript">
+function creatline(){
+	var name = $("#linename").val();
+    //检验输入的线路名是否为空
+	if(name == null || name == "") {
+		setDivInfo("error", "错误：没有输入线路名称！", 1);
+	}else{
+		var form=document.getElementById('createline');
+		form.submit();
+	}
+}
+
+function setDivInfo(divid, message, flag) {
+	switch(flag) {
+		case 1:
+			document.getElementById(divid).innerHTML = message;
+			break;
+		case 2:
+			document.getElementById(divid).innerHTML = message;
+			break;
+		default:
+			document.getElementById(divid).innerHTML = emailmessage;
+			break;
+	}
+	document.getElementById(divid).style.display = "block";
+}
 
 </script>
+{% endblock %}
+
+{% block windows %}
+<div class="xytxt" id="Addtable1" style="width: 300px; margin-left: -170px; display: none; top: 1490.2272727489471px;">
+		<div class="xytext" style="padding:15px; background:#fff; font-size:12px; font-weight:normal; border:1px solid #dedede;">
+		<form id="createline" method="post" action="{{ url('line_create') }}" >
+        	<ul id="joinboxTable">
+               <li><font style="font-size:16px;">线路名:</font></li>
+	           <li><input class="text" id="linename" type="text" name="name"/></li>
+	           <li><font id="error" style="font-size:16px;color:#ff0066" ></font></li>
+{# 	            <li style="height:30px;margin-bottom:5px"><div class="r">#}
+{# 	            	<a href="javascript:void(0)" class="submitto"  onclick="creatline();"><font style="aligen:center;">创建线路</font></a>#}
+{# 	           </div></li>#}
+			</ul>
+		</form>
+        </div>
+        <span style="display:block; margin-top:10px">
+	        <a href="javascript:void(0);" class="submitto Addcolse1" style="margin-left:10px; display:inline;  float:right"><font>取消</font></a>
+	        <a class="submitto" onclick="creatline();" style="float:right"><font>确定</font></a>
+	    </span>
+</div>
+<div class="xytxt" id="editTable" style="width: 300px; margin-left: -170px; display: none; top: 1490.2272727489471px;">
+	<div class="xytext" style="padding:15px; background:#fff; font-size:12px; font-weight:normal; border:1px solid #dedede;">	
+		<span style="display:block; margin-top:10px">	
+	        <a href="javascript:void(0);" class="submitto editClose" style="margin-left:10px; display:inline;  float:right"><font>取消</font></a>
+	        <a class="submitto" onclick="creatline();" style="float:right"><font>确定</font></a>
+	    </span>
+	</div>
+</div>
 {% endblock %}
