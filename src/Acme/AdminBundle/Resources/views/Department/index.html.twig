@@ -52,7 +52,6 @@
 		<a href="{{ url('department_delete') }}?id={{ level1.id }}">删除部门</a>
 	</form>
 	</li>
-	
 	{% for level2 in level1.__children %}
 		<li display="inline" >
 			<form method="post" action="{{ url('create_department',{'parentid':level2.id}) }}">
@@ -76,7 +75,7 @@
 				<a href="{{ url('department_delete') }}?id={{ level3.id }}">删除部门</a>
 			</form>
 			</li>
-				{% for level4 in level3.__children %}
+			{% for level4 in level3.__children %}
 				<li display="inline" >
 				<form method="post" action="{{ url('create_department',{'parentid':level4.id}) }}">
 					<span>.............</span><img src="{{ asset('bundles/acmetest/images/l.png') }}" /> <label>{{ level4.name }}</label>
@@ -87,11 +86,10 @@
 					<a href="{{ url('department_delete') }}?id={{ level4.id }}">删除部门</a>
 				</form>
 				</li>
-				{% endfor %}
 			{% endfor %}
 		{% endfor %}
-		
 	{% endfor %}
+{% endfor %}
 </ul>	
 
 

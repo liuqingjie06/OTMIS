@@ -1,3 +1,8 @@
+acme_data:
+    resource: "@AcmeDataBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 acme_main:
     resource: "@AcmeMainBundle/Controller/"
     type:     annotation

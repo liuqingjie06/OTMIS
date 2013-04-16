@@ -1,0 +1,79 @@
+{% extends 'AcmeMainBundle::layout.html.twig' %}
+
+{% block header %}
+{% include "AcmeMainBundle::header.html.twig" %}
+{% endblock %}
+
+{% block menu %}
+{% include "AcmeMainBundle::menu_l.html.twig" %}
+{% endblock %}
+
+{% block content%}
+<div class="content l" id="right">
+	<div class="box">
+		<div class="contentbox l" >
+			<div class="title">
+            		<strong class="l">线路情况</strong>
+        			<span class="relative r" style="z-index:98">
+{#         				<a href="javascript:void(0)" class="bottun4" onclick="xytt('Addtable1','xy','Addcolse1')"><font>添加新线路</font>	</a>#}
+        				<a href="javascript:void(0)" class="bottun4"><font>?</font></a>
+        			</span>
+                </div>
+		 	<div class="textbox">
+		 		<table class="table_style2">
+		 			<thead>
+		 				<tr>
+		 					<th class="center"><font style=" top:-2px; font-size:15px;" id="Psort0">编号</font></th>
+		 					<th class="center"><font style=" top:-2px; font-size:15px;" id="Psort0">线路名称</font></th>
+		 					<th class="center"><font style=" top:-2px; font-size:15px;" id="Psort0">操作</font></th>
+		 				</tr>
+		 			</thead>
+		 			<tbody>
+		 			{% for item in line %}
+		 				<tr>
+		 					<td class="center" style="width: 90px; min-width:>
+		 					<div class="tdtxtwidth l"  style="width: 190px; min-width: 24px;">{{ item.id }}</div></td>
+		 					<td class="center"  min-width: 24px;">
+		 					<div class="tdtxtwidth" title="1,075（0.9%）" style="width: 260px; min-width: 24px;"><strong>{{ item.name }}</strong></div></td>
+		 					<td class="right" style="padding-right:10px" >
+		 						<div class="relative fmk" style="z-index:96">
+                                	<a href="javascript:void(0)" class="bottun4" onclick="delate(this)"><font>查看线路情况</font></a>
+                                	<a href="javascript:void(0)" class="bottun4" onclick="delate(this)"><font>删除</font></a>
+                                	<a href="javascript:void(0)" class="bottun4" onclick="update(this)"><font>修改</font></a>
+                                </div>
+		 					</td>
+		 				</tr>
+		 			{% endfor %}
+		 			</tbody>
+		 		</table>
+		 	</div>
+		 </div>
+          <!-- 新建线路资料 -->
+		 <div class="contentbox r" >
+		 	<div class="title">
+            	<strong class="l">新建线路</strong>
+            	<span class="relative r" style="z-index:98"></span>
+            </div>
+            <div class="textbox">
+            	<form metho="post" action="{{ url('line_create') }}">
+            	
+            	<div class="tablee">
+            		<ul>
+	            		<li><label>线路名:</label><input class="text" type="text" name="name"/></li>
+	            		<li style="height:30px"><a href="javascript:void(0)" class="submitto" onclick="creaeline();"><font style="aligen:center;">创建线路</font></a></li>
+{# 	            		<a class="submitto" href="javascript:void(0)"><font>创建线路</font></a>#}
+            		</ul>
+{#             		<div><a href="javascript:void(0)" class="submitto" onclick="creaeline();"><font style="aligen:center;">创建线路</font></a>#}
+            	</div>
+            	</form>
+            </div>
+		 </div>
+		 
+	</div>
+</div>
+
+<script type="text/javascript">
+
+
+</script>
+{% endblock %}

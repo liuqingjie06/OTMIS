@@ -165,7 +165,6 @@ class DefaultController extends Controller
     	//$user->addRole("ROLE_ADMIN");
     	return $this->render('AcmeTryBundle:Default:addrole.html.twig', array(
     			'user' => $user));
-    	
     }
     
 }
