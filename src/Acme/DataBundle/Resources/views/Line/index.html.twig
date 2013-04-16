@@ -32,14 +32,14 @@
 		 			{% for item in line %}
 		 				<tr>
 		 					<td class="center" style="min-width:24px">
-		 					<div class="tdtxtwidth"  style=" min-width: 24px;">{{ item.id }}</div></td>
+		 					<div class="tdtxtwidth"  style=" min-width: 24px;">{{ item.number }}</div></td>
 		 					<td class="center"  style="min-width:24px;">
 		 					<div class="tdtxtwidth" style=" min-width: 24px;"><strong>{{ item.name }}</strong></div></td>
 		 					<td class="center" style=" min-width: 24px" >
 		 						<div class="relative fmk r" style="z-index:96;">
                                 	<a href="javascript:void(0)" class="bottun4" onclick="delate(this)"><font>查看线路情况</font></a>                          
                                 	<a href="javascript:void(0)" class="bottun4" onclick="xytt('editTable','xy','editClose')"><font>修改</font></a>
-                                	<a href="javascript:void(0)" class="bottun4" onclick="delate(this)"><font>删除</font></a>
+                                	<a href="{{ url('line_delate',{id:item.id}) }}" class="bottun4" ><font>删除</font></a>
                                 </div>
 		 					</td>
 		 				</tr>
@@ -56,9 +56,12 @@
 <script type="text/javascript">
 function creatline(){
 	var name = $("#linename").val();
+	var number=$("#linenumber").val();
     //检验输入的线路名是否为空
 	if(name == null || name == "") {
 		setDivInfo("error", "错误：没有输入线路名称！", 1);
+	}else if(number == null || number == ""){
+		setDivInfo("error", "错误：没有输入线路编号！", 1);
 	}else{
 		var form=document.getElementById('createline');
 		form.submit();
@@ -90,6 +93,8 @@ function setDivInfo(divid, message, flag) {
         	<ul id="joinboxTable">
                <li><font style="font-size:16px;">线路名:</font></li>
 	           <li><input class="text" id="linename" type="text" name="name"/></li>
+	           <li><font style="font-size:16px;">线编号:</font></li>
+	           <li><input class="text" id="linenumber" type="text" name="number"/></li>
 	           <li><font id="error" style="font-size:16px;color:#ff0066" ></font></li>
 {# 	            <li style="height:30px;margin-bottom:5px"><div class="r">#}
 {# 	            	<a href="javascript:void(0)" class="submitto"  onclick="creatline();"><font style="aligen:center;">创建线路</font></a>#}
@@ -98,8 +103,8 @@ function setDivInfo(divid, message, flag) {
 		</form>
         </div>
         <span style="display:block; margin-top:10px">
-	        <a href="javascript:void(0);" class="submitto Addcolse1" style="margin-left:10px; display:inline;  float:right"><font>取消</font></a>
-	        <a class="submitto" onclick="creatline();" style="float:right"><font>确定</font></a>
+	        <a href="javascript:void(0);" class="bottun4 Addcolse1" style="margin-left:10px; display:inline;  float:right"><font>取消</font></a>
+	        <a class="bottun4" onclick="creatline();" style="float:right"><font>确定</font></a>
 	    </span>
 </div>
 <div class="xytxt" id="editTable" style="width: 300px; margin-left: -170px; display: none; top: 1490.2272727489471px;">

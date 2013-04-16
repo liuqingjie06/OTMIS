@@ -41,12 +41,28 @@ class LineController extends Controller
 		$em = $this->getDoctrine()->getEntityManager();
 		if($request->isMethod('POST')){
 			$line->setName($_POST["name"]);
+			$line->setNumber($_POST["number"]);
 			$em->persist($line);
 			$em->flush();
 			return $this->redirect($this->generateUrl('line'));
 		}
 			
 		return array();
+	}
+	
+	/**
+	 * @Route("/data/line/delate/{id}", name="line_delate")
+	 * @Template()
+	 */
+	public function delateAction($id)
+	{
+		$line = new Line();
+		$repository = $this->getDoctrine()->getRepository('AcmeDataBundle:Line');
+		$line=$repository->findOneById($id);
+		$em = $this->getDoctrine()->getEntityManager();
+		$em->remove($line);
+		$em->flush();
+		return $this->redirect($this->generateUrl('line'));
 	}
 	
 	

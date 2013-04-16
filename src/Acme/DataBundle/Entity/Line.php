@@ -30,9 +30,14 @@ class Line
 	private $id;
 	
 	/**
-	 * @ORM\Column(name="name", type="string",length=255)
+	 * @ORM\Column(name="name", type="string", length=128)
 	 */
 	private $name;
+	
+	/**
+	 * @ORM\Column(name="number", type="string", length=128)
+	 */
+	private $number;
 	
 	/**
 	 * use Doctrine\Common\Collections\ArrayCollection;
@@ -113,5 +118,28 @@ class Line
     public function getCurve()
     {
         return $this->curve;
+    }
+
+    /**
+     * Set number
+     *
+     * @param integer $number
+     * @return Line
+     */
+    public function setNumber($number)
+    {
+        $this->number = $number;
+    
+        return $this;
+    }
+
+    /**
+     * Get number
+     *
+     * @return integer 
+     */
+    public function getNumber()
+    {
+        return $this->number;
     }
 }
