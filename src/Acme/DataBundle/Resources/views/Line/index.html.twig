@@ -44,15 +44,15 @@
 		 					</td>
 		 				</tr>
 		 				
-		 				<tr id="form{{ item.id }}" style="display:none;" >
-		 					<form method="post" action="#">
+		 				<tr id="form{{ item.id }}"  style="display:none;background-color:#ff9966" >
+		 					<form id="formsubmit{{ item.id }}" method="post" action="{{ url('line_update', {'id':item.id}) }}">
 		 					<td class="center" style="min-width:24px">
-		 						<input class="tdtxtwidth"  type="text" style=" width:30px; min-width: 24px;"/>
+		 						<input class="tdtxtwidth"  type="text" style=" width:30px; min-width: 24px;" name="number"/>
 		 					<td class="center"  style="min-width:24px;">
-		 						<input class="tdtxtwidth"  type="text" style=" width:60px;  min-width: 24px;"/>
+		 						<input class="tdtxtwidth"  type="text" style=" width:60px;  min-width: 24px;" name="name"/>
 		 					<td class="center" style=" min-width: 24px" >
 		 						<div class="relative fmk r" style="z-index:96;">
-		 							<a href="javascript:void(0)" class="bottun4" ><font>确定</font></a>                          
+		 							<a href="javascript:void(0)" class="bottun4" onclick="submitForm('{{ item.id }}')"><font>确定</font></a>                          
                                 	<a href="javascript:void(0)" class="bottun4" onclick="hideEdit('{{ item.id }}')" ><font>取消</font></a>
                                	</div>
 		 					</form>
@@ -133,6 +133,10 @@ function showEdit(id){
 }
 function hideEdit(id){
 	$("#" + "form" + id).fadeOut("fast");
+}
+function submitForm(id){
+	var form=document.getElementById('formsubmit'+id);
+	form.submit();
 }
 </script>
 {% endblock %}

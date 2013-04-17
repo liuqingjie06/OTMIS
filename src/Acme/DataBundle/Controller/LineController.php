@@ -65,6 +65,22 @@ class LineController extends Controller
 		return $this->redirect($this->generateUrl('line'));
 	}
 	
-	
+	/**
+	 * @Route("/data/line/edit/{id}", name="line_update")
+	 * @Template()
+	 */
+	public function updateAction(Request $request,$id)
+	{
+		$line = new Line();
+		$repository = $this->getDoctrine()->getRepository('AcmeDataBundle:Line');
+		$line=$repository->findOneById(intval(trim($id), 10));
+		$em = $this->getDoctrine()->getEntityManager();
+		if($request->isMethod('POST')){
+			$line->setName($_POST["name"]);
+			$line->setNumber($_POST["number"]);
+			$em->flush();
+			return $this->redirect($this->generateUrl('line'));
+		}
+	}
 	
 }
