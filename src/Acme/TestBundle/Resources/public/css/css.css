@@ -701,7 +701,7 @@ a:hover.bottun4.nonehover font{
 
 
 .fmk a:hover.bottun4{
-	color:#999;background:url(../images/bottun_right_hover.png) no-repeat 3px center;
+	color:#999;background:url(../images/bottun_right_hover.png) no-repeat right center;
 }
 .fmk a:hover.bottun4 font{
 	color:#999;background:url(../images/bottun_left_hover.png) no-repeat right center; color:#fff

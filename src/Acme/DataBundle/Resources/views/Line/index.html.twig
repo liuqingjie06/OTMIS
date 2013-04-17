@@ -38,10 +38,24 @@
 		 					<td class="center" style=" min-width: 24px" >
 		 						<div class="relative fmk r" style="z-index:96;">
                                 	<a href="javascript:void(0)" class="bottun4" onclick="delate(this)"><font>查看线路情况</font></a>                          
-                                	<a href="javascript:void(0)" class="bottun4" onclick="xytt('editTable','xy','editClose')"><font>修改</font></a>
+                                	<a href="javascript:void(0)" class="bottun4" onclick="showEdit('{{ item.id }}')"><font>修改</font></a>
                                 	<a href="{{ url('line_delate',{id:item.id}) }}" class="bottun4" ><font>删除</font></a>
                                 </div>
 		 					</td>
+		 				</tr>
+		 				
+		 				<tr id="form{{ item.id }}" style="display:none;" >
+		 					<form method="post" action="#">
+		 					<td class="center" style="min-width:24px">
+		 						<input class="tdtxtwidth"  type="text" style=" width:30px; min-width: 24px;"/>
+		 					<td class="center"  style="min-width:24px;">
+		 						<input class="tdtxtwidth"  type="text" style=" width:60px;  min-width: 24px;"/>
+		 					<td class="center" style=" min-width: 24px" >
+		 						<div class="relative fmk r" style="z-index:96;">
+		 							<a href="javascript:void(0)" class="bottun4" ><font>确定</font></a>                          
+                                	<a href="javascript:void(0)" class="bottun4" onclick="hideEdit('{{ item.id }}')" ><font>取消</font></a>
+                               	</div>
+		 					</form>
 		 				</tr>
 		 			{% endfor %}
 		 			</tbody>
@@ -51,39 +65,6 @@
 	</div>
 </div>
 
-
-
-<script type="text/javascript">
-function creatline(){
-	var name = $("#linename").val();
-	var number=$("#linenumber").val();
-    //检验输入的线路名是否为空
-	if(name == null || name == "") {
-		setDivInfo("error", "错误：没有输入线路名称！", 1);
-	}else if(number == null || number == ""){
-		setDivInfo("error", "错误：没有输入线路编号！", 1);
-	}else{
-		var form=document.getElementById('createline');
-		form.submit();
-	}
-}
-
-function setDivInfo(divid, message, flag) {
-	switch(flag) {
-		case 1:
-			document.getElementById(divid).innerHTML = message;
-			break;
-		case 2:
-			document.getElementById(divid).innerHTML = message;
-			break;
-		default:
-			document.getElementById(divid).innerHTML = emailmessage;
-			break;
-	}
-	document.getElementById(divid).style.display = "block";
-}
-
-</script>
 {% endblock %}
 
 {% block windows %}
@@ -115,4 +96,43 @@ function setDivInfo(divid, message, flag) {
 	    </span>
 	</div>
 </div>
+
+<script type="text/javascript">
+
+function creatline(){
+	var name = $("#linename").val();
+	var number=$("#linenumber").val();
+    //检验输入的线路名是否为空
+	if(name == null || name == "") {
+		setDivInfo("error", "错误：没有输入线路名称！", 1);
+	}else if(number == null || number == ""){
+		setDivInfo("error", "错误：没有输入线路编号！", 1);
+	}else{
+		var form=document.getElementById('createline');
+		form.submit();
+	}
+}
+
+function setDivInfo(divid, message, flag) {
+	switch(flag) {
+		case 1:
+			document.getElementById(divid).innerHTML = message;
+			break;
+		case 2:
+			document.getElementById(divid).innerHTML = message;
+			break;
+		default:
+			document.getElementById(divid).innerHTML = emailmessage;
+			break;
+	}
+	document.getElementById(divid).style.display = "block";
+}
+
+function showEdit(id){
+	$("#" + "form" + id).fadeIn("fast");
+}
+function hideEdit(id){
+	$("#" + "form" + id).fadeOut("fast");
+}
+</script>
 {% endblock %}
