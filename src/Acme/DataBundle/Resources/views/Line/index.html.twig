@@ -1,5 +1,29 @@
 {% extends 'AcmeMainBundle::layout.html.twig' %}
 
+{% block title %} 线路资料 {% endblock %}
+{% block contentjs %}
+<script type="text/javascript">
+$(document).ready(function() {
+	var oTable = $('#1001').dataTable( {
+		 "oLanguage": {
+	            "sLengthMenu": "每页显示 _MENU_ 记录",
+	            "sZeroRecords": "没有找到",
+	            "sInfo": "显示从 _START_ 到 _END_ 总共 _TOTAL_ 条 记录",
+	            "sInfoEmpty": "显示从 0 到 0 共0条 记录",
+	            "sInfoFiltered": "(从 _MAX_ 条记录中找到)",
+		         "sFilter":"搜索"
+	        },
+		"bProcessing": true,
+		"sAjaxSource": "{{ url('line_get') }}"
+	} );
+	$("select").sSelect();
+} );
+
+</script>
+
+
+{% endblock %}
+
 {% block header %}
 {% include "AcmeMainBundle::header.html.twig" %}
 {% endblock %}
@@ -11,6 +35,26 @@
 {% block content%}
 <div class="content l" id="right">
 	<div class="boxmax">
+{# 		<div class="title">#}
+{#             <strong class="l">测试的表格</strong>#}
+{#         	<span class="relative r" style="z-index:98"></span>#}
+{#         </div>#}
+        <div class="textbox">
+        	<table class="table_style1" id="1001" style="width:100%">
+		 		<thead>
+		 			<tr>
+		 				<th class="center"><font style=" top:-2px; font-size:15px;" id="Psort0">编号</font></th>
+		 				<th class="center"><font style=" top:-2px; font-size:15px;" id="Psort0">线路名称</font></th>
+{# 		 				<th class="center r" ><font style=" top:-2px; font-size:15px; padding-right:95px;" id="Psort0">操作</font></th>#}
+		 			</tr>
+		 		</thead>
+			 	<tbody>
+			 	</tbody>
+			 </table>
+        </div>
+     </div>
+	
+	<div class="boxmax">
 			<div class="title">
             		<strong class="l">线路情况</strong>
         			<span class="relative r" style="z-index:98">
@@ -19,49 +63,49 @@
         			</span>
                 </div>
 		 	<div class="textbox">
-		 		<div class="login"><img src="{{ asset('bundles/acmetest/images/loading.gif') }}" height="25px"><br>正在加载统计数据...</div>
-{# 		 		<table class="table_style2" style="width:100%">#}
-{# 		 			<thead>#}
-{# 		 				<tr>#}
-{# 		 					<th class="center"><font style=" top:-2px; font-size:15px;" id="Psort0">编号</font></th>#}
-{# 		 					<th class="center"><font style=" top:-2px; font-size:15px;" id="Psort0">线路名称</font></th>#}
-{# 		 					<th class="center r" ><font style=" top:-2px; font-size:15px; padding-right:95px;" id="Psort0">操作</font></th>#}
-{# 		 				</tr>#}
-{# 		 			</thead>#}
-{# 		 			<tbody>#}
-{# 		 			{% for item in line %}#}
-{# 		 				<tr>#}
-{# 		 					<td class="center" style="min-width:24px">#}
-{# 		 					<div class="tdtxtwidth"  style=" min-width: 24px;">{{ item.number }}</div></td>#}
-{# 		 					<td class="center"  style="min-width:24px;">#}
-{# 		 					<div class="tdtxtwidth" style=" min-width: 24px;"><strong>{{ item.name }}</strong></div></td>#}
-{# 		 					<td class="center" style=" min-width: 24px" >#}
-{# 		 						<div class="relative fmk r" style="z-index:96;">#}
-{#                                 	<a href="javascript:void(0)" class="bottun4" onclick="delate(this)"><font>查看线路情况</font></a>                          #}
-{#                                 	<a href="javascript:void(0)" class="bottun4" onclick="showEdit('{{ item.id }}')"><font>修改</font></a>#}
-{#                                 	<a href="javascript:void(0)" class="bottun4" onclick="openBenchMark(this)"><font>删除</font></a>#}
-{#                                 </div>#}
-{# 		 					</td>#}
-{# 		 				</tr>#}
+{# 		 		<div class="login"><img src="{{ asset('bundles/acmetest/images/loading.gif') }}" height="25px"><br>正在加载统计数据...</div>#}
+		 		<table class="table_style2" style="width:100%">
+		 			<thead>
+		 				<tr>
+		 					<th class="center"><font style=" top:-2px; font-size:15px;" id="Psort0">编号</font></th>
+		 					<th class="center"><font style=" top:-2px; font-size:15px;" id="Psort0">线路名称</font></th>
+		 					<th class="center r" ><font style=" top:-2px; font-size:15px; padding-right:95px;" id="Psort0">操作</font></th>
+		 				</tr>
+		 			</thead>
+		 			<tbody>
+		 			{% for item in line %}
+		 				<tr>
+		 					<td class="center" style="min-width:24px">
+		 					<div class="tdtxtwidth"  style=" min-width: 24px;">{{ item.number }}</div></td>
+		 					<td class="center"  style="min-width:24px;">
+		 					<div class="tdtxtwidth" style=" min-width: 24px;"><strong>{{ item.name }}</strong></div></td>
+		 					<td class="center" style=" min-width: 24px" >
+		 						<div class="relative fmk r" style="z-index:96;">
+                                	<a href="javascript:void(0)" class="bottun4" onclick="delate(this)"><font>查看线路情况</font></a>                          
+                                	<a href="javascript:void(0)" class="bottun4" onclick="showEdit('{{ item.id }}')"><font>修改</font></a>
+                                	<a href="javascript:void(0)" class="bottun4" onclick="openBenchMark(this)"><font>删除</font></a>
+                                </div>
+		 					</td>
+		 				</tr>
 		 				
-{# 		 				<tr id="form{{ item.id }}" class="editform" style="opacity:50;display:none;background-color:#ed3" >#}
-{# 		 					<form id="formsubmit{{ item.id }}" method="post" action="{{ url('line_update', {'id':item.id}) }}">#}
-{# 		 					<td class="center" style="min-width:24px">#}
-{# 		 						<input class="tdtxtwidth"  type="text" style=" width:45px; min-width: 24px;" name="number"/>#}
-{# 		 					<td class="center"  style="min-width:24px;">#}
-{# 		 						<input class="tdtxtwidth"  type="text" style=" width:65px;  min-width: 24px;" name="name"/>#}
-{# 		 					<td class="center" style=" min-width: 24px" >#}
-{# 		 						<div class="relative fmk r" style="z-index:96;">#}
-{# 		 							<a href="javascript:void(0)" class="bottun4" onclick="submitForm('{{ item.id }}')"><font>确定</font></a>                          #}
-{#                                 	<a href="javascript:void(0)" class="bottun4" onclick="hideEdit('{{ item.id }}')" ><font>取消</font></a>#}
-{#                                	</div>#}
-{# 		 					</form>#}
-{# 		 				</tr>#}
+		 				<tr id="form{{ item.id }}" class="editform" style="opacity:50;display:none;background-color:#ed3" >
+		 					<form id="formsubmit{{ item.id }}" method="post" action="{{ url('line_update', {'id':item.id}) }}">
+		 					<td class="center" style="min-width:24px">
+		 						<input class="tdtxtwidth"  type="text" style=" width:45px; min-width: 24px;" name="number"/>
+		 					<td class="center"  style="min-width:24px;">
+		 						<input class="tdtxtwidth"  type="text" style=" width:65px;  min-width: 24px;" name="name"/>
+		 					<td class="center" style=" min-width: 24px" >
+		 						<div class="relative fmk r" style="z-index:96;">
+		 							<a href="javascript:void(0)" class="bottun4" onclick="submitForm('{{ item.id }}')"><font>确定</font></a>                          
+                                	<a href="javascript:void(0)" class="bottun4" onclick="hideEdit('{{ item.id }}')" ><font>取消</font></a>
+                               	</div>
+		 					</form>
+		 				</tr>
 		 				
 		 				
-{# 		 			{% endfor %}#}
-{# 		 			</tbody>#}
-{# 		 		</table>#}
+		 			{% endfor %}
+		 			</tbody>
+		 		</table>
 		 	</div>
 			
 	</div>

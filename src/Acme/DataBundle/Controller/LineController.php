@@ -14,6 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Acme\DataBundle\Entity\Line;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class LineController extends Controller
 {
@@ -82,5 +83,42 @@ class LineController extends Controller
 			return $this->redirect($this->generateUrl('line'));
 		}
 	}
+	
+	/**
+	 *  将线路数据返回为json格式
+	 *  @Route("/data/get",name="line_get")
+	 * 
+	 */
+	public function getAction()
+	{
+		$em = $this->getDoctrine()->getManager();
+		$query = $em->createQuery(
+    		'SELECT p.name,p.number FROM AcmeDataBundle:Line p'
+		);
+		$line = $query->getResult();	
+		$iTotal = count($line);
+		$iFilteredTotal = count($line);
+		//输出结果
+		$output = array(
+				"sEcho" => 1,
+				"iTotalRecords" =>"4",
+				"iTotalDisplayRecords" =>"4",
+				"aaData" => array()
+		);
+		
+	
+		for ($i=0; $i<count($line); $i++){
+			$row=array();
+			
+			$row[]=$line[$i]['number'];
+			$row[]=$line[$i]['name'];
+
+			$output['aaData'][]=$row;
+		}
+		
+		return new Response(json_encode( $output ));
+		
+	}
+	
 	
 }

@@ -2,26 +2,46 @@
 
 {% block fos_user_content %}
 
+<div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li ><a class="muted" href="#">关于我们</a></li>
+        </ul>
+        <h3 class="muted">铁路工务信息管理系统</h3>
+      </div>
 
-<form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
-    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-	
-	<h2 class="form-singin-heading">欢迎！</h2>
-    <input type="text" id="username" class="input-block-level" placeholder="用户名" name="_username" value="{{ last_username }}" required="required" />
-    <input type="password" id="password" class="input-block-level" placeholder="密码" name="_password" required="required" />
-	
-	<label  class="checkbox" for="remember_me">
-    	<input type="checkbox" id="remember_me" name="_remember_me" value="on" /> 下次自动登录
-    </label>
-    {% if error %}
-    		<p><span class="label label-important">{{ error|trans({}, 'FOSUserBundle') }}</span></p>
-    {% endif %}
-   
- 	<button class="btn btn-large btn-primary" type="submit">登录</button>
-    
-{#     <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />#}
-	
-</form>
+      <hr>
+
+      <div class="row-fluid login" >
+      	<div class="span6" style="padding-right:20px;border-right:1px solid #ddd">
+	        <h3 class="muted text-center">欢迎进入系统</h3>
+	        <p class="muted">铁路工务信息系统为工务部门提供信息化管理，数据分析，及协同办公平台。</p>
+	     
+        </div>
+        <vr>
+        <div class="span6 " style="padding-left:50px;">
+	        <form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
+    			<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />       
+		        <input type="text" id="username" class="input-block-level" placeholder="用户名" name="_username" value="{{ last_username }}" required="required" />
+			    <input type="password" id="password" class="input-block-level" placeholder="密码" name="_password" required="required" />
+				
+				<label  class="checkbox" for="remember_me">
+			    	<input type="checkbox" id="remember_me" name="_remember_me" value="on" /> 下次自动登录
+			    </label>
+			    {% if error %}
+			    		<p><span class="label label-important">{{ error|trans({}, 'FOSUserBundle') }}</span></p>
+			    {% endif %}
+			   
+			 	<button class="btn btn-large btn-success" type="submit">登录</button>
+	      	</form>
+      	</div>
+      </div>
+
+      <hr>
+
+     <div class="footer">
+        <p>© Railmaps 2013</p>
+     </div>
+
 
 
 {% endblock fos_user_content %}

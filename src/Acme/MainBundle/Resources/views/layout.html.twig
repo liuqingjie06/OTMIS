@@ -14,7 +14,8 @@
 		<script type="text/javascript" src="{{ asset('js/timeflag.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/getParameter.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/util.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('js/summarizejs/summarize.js') }}"></script>
+{# 		<script type="text/javascript" src="{{ asset('js/summarizejs/summarize.js') }}"></script>#}
+		
 		<script src="{{ asset('js/Tab.js') }}"></script>
 		
 		<link href="{{ asset('/public/css/WdatePicker.css') }}" type="text/css"/>
@@ -41,10 +42,10 @@
 			$("select").sSelect();
 			})
 		</script>
-	
+	    {% block contentjs %} {% endblock %}
 	</head>
 
-    <body onload="initSearch();">
+    <body>
         <div class="web" style="min-width:768px;">
     	{% block header %}    	
     	{% endblock %}
