@@ -112,6 +112,10 @@ class LineController extends Controller
 			
 			$row[]=$line[$i]['number'];
 			$row[]=$line[$i]['name'];
+			$row[]='A';
+// 					<a href="javascript:void(0)" class="btn btn-small btn-active" ><font>查看线路情况</font></a>                          
+//                                 	<a href="javascript:void(0)" class="btn btn-small btn-warning" ><font>修改</font></a>
+//                                 	<a href="javascript:void(0)" class="btn btn-small btn-danger"><font>删除</font></a>';
 
 			$output['aaData'][]=$row;
 		}
