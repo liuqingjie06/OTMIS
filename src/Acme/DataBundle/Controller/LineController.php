@@ -40,26 +40,57 @@ class LineController extends Controller
 	 */
 	public function getAction(Request $request)
 	{
-		$line = new Line();
+		
 		$em = $this->getDoctrine()->getEntityManager();
 		$repo=$this->getDoctrine()->getRepository('AcmeDataBundle:Line');
 		///如果页面向后台发出数据，对数据进行更新并返回给页面
 		if($request->isMethod('POST')){
 			if($request->get('action')=='create'){
+				$line = new Line();
 				$line->setNumber($request->get('data')["number"]);
 				$line->setName($request->get('data')["name"]);
 				//对数据进行验证 
 				$output=$this->createLine($line);
 				return new Response(json_encode( $output ));    			
 			}elseif($request->get('action')=='edit'){
-				$line=$repo->findOneById($request->get('id'));
+				$id = str_replace( "row_","",$request->get('id'));				
+				$line=$repo->findOneById(intval($id));
+				if(!$line){
+					$output = array(
+							"id"=>"",
+							"error"=>"没有找到对象",
+							"fieldErrors"=>[],
+							"data"=>[],
+					);
+					return new Response(json_encode( $output ));
+				}
 				$line->setNumber($request->get('data')["number"]);
 				$line->setName($request->get('data')["name"]);
 				//对数据进行验证
-				var_dump($line);
-				//$output=$this->updateLine($line);
+				$output=$this->updateLine($line);
+				return new Response(json_encode( $output ));				
+			}elseif($request->get('action')=='remove'){
+				$id = str_replace( "row_","",$request->get('data')[0]);				
+				$line=$repo->findOneById(intval($id));
+				if(!$line){
+					$output = array(
+							"id"=>"",
+							"error"=>"没有找到对象",
+							"fieldErrors"=>[],
+							"data"=>[],
+					);
+					return new Response(json_encode( $output ));
+				}
+				$line=$repo->findOneById(intval($id));
+				$em->remove($line);
+				$em->flush();
+				$output = array(
+						"id"=>-1,
+						"error"=>"",
+						"fieldErrors"=>[],
+						"data"=>[]
+				);
 				return new Response(json_encode( $output ));
-				
 			}
 		}
 		$query = $em->createQuery(
@@ -85,7 +116,7 @@ class LineController extends Controller
 	
 		for ($i=0; $i<count($line); $i++){
 			$row=array();
-			$row["DT_RowID"]=$line[$i]['id'];
+			$row["DT_RowId"] = "row_".$line[$i]['id'] ;
 			$row["number"]=$line[$i]['number'];
 			$row["name"]=$line[$i]['name'];
 			$output['aaData'][]=$row;
@@ -119,15 +150,13 @@ class LineController extends Controller
 		if (count($errors) > 0) {
 		
 			for($i=0;$i<count($errors);$i++){
-				//     					var_dump($errors[$i]->getmessage());
-				//     					var_dump($errors[$i]->getPropertyPath());
 				$filederror['name']=$errors[$i]->getPropertyPath();
 				$filederror['status']= $errors[$i]->getMessage();
 				$fieldErrors[]=$filederror;
 			}
 		
 			$output = array(
-					"id"=>"row_31",
+					"id"=>"",
 					"error"=>"数据填写有误",
 					"fieldErrors"=>$fieldErrors,
 					"data"=>[],
@@ -136,14 +165,14 @@ class LineController extends Controller
 		} else {
 			$em->persist($line);
 			$em->flush();
-			// 				 //返回一个结果给前台
+			//返回一个结果给前台
 			$output = array(
-					"id"=>"row_31",
+					"id"=>strval($line->getId()),
 					"error"=>"",
 					"fieldErrors"=>[],
 					"data"=>[],
 					"row"=>array(
-							"DT_RowId"=>"row_30",
+							"DT_RowId"=>strval($line->getId()),
 							"name" => $line->getName(),
 							"number" => $line->getNumber()
 					)
@@ -173,7 +202,7 @@ class LineController extends Controller
 			}
 		
 			$output = array(
-					"id"=>"row_31",
+					"id"=>"",
 					"error"=>"数据填写有误",
 					"fieldErrors"=>$fieldErrors,
 					"data"=>[],
@@ -183,12 +212,12 @@ class LineController extends Controller
 			$em->flush();
 			// 				 //返回一个结果给前台
 			$output = array(
-					"id"=>"row_31",
+					"id"=>"row_".$line->getId(),
 					"error"=>"",
 					"fieldErrors"=>[],
 					"data"=>[],
 					"row"=>array(
-							"DT_RowId"=>"row_30",
+							"DT_RowId"=>"row_".$line->getId(),
 							"name" => $line->getName(),
 							"number" => $line->getNumber()
 					)
