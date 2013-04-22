@@ -11,6 +11,8 @@ namespace Acme\DataBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Acme\DataBundle\Entity\Curve;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity
@@ -31,11 +33,13 @@ class Line
 	
 	/**
 	 * @ORM\Column(name="name", type="string", length=128)
+	 * @Assert\NotBlank()
 	 */
 	private $name;
 	
 	/**
 	 * @ORM\Column(name="number", type="string", length=128)
+	 * @Assert\NotBlank()
 	 */
 	private $number;
 	

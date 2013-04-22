@@ -25,81 +25,51 @@ class LineController extends Controller
 	
 	public function indexAction()
 	{
-		$repo=$this->getDoctrine()->getRepository('AcmeDataBundle:Line');
-		$line=$repo->findAll();
+// 		$repo=$this->getDoctrine()->getRepository('AcmeDataBundle:Line');
+// 		$line=$repo->findAll();
 		
 		
-		return array('line'=>$line);
-	}
-	
-	/**
-	 * @Route("/data/line/create", name="line_create")
-	 * @Template()
-	 */
-	public function createAction(Request $request)
-	{
-		$line = new Line();
-		$em = $this->getDoctrine()->getEntityManager();
-		if($request->isMethod('POST')){
-			$line->setName($_POST["name"]);
-			$line->setNumber($_POST["number"]);
-			$em->persist($line);
-			$em->flush();
-			return $this->redirect($this->generateUrl('line'));
-		}
-			
 		return array();
 	}
 	
-	/**
-	 * @Route("/data/line/delate/{id}", name="line_delate")
-	 * @Template()
-	 */
-	public function delateAction($id)
-	{
-		$line = new Line();
-		$repository = $this->getDoctrine()->getRepository('AcmeDataBundle:Line');
-		$line=$repository->findOneById($id);
-		$em = $this->getDoctrine()->getEntityManager();
-		$em->remove($line);
-		$em->flush();
-		return $this->redirect($this->generateUrl('line'));
-	}
 	
 	/**
-	 * @Route("/data/line/edit/{id}", name="line_update")
-	 * @Template()
-	 */
-	public function updateAction(Request $request,$id)
-	{
-		$line = new Line();
-		$repository = $this->getDoctrine()->getRepository('AcmeDataBundle:Line');
-		$line=$repository->findOneById(intval(trim($id), 10));
-		$em = $this->getDoctrine()->getEntityManager();
-		if($request->isMethod('POST')){
-			$line->setName($_POST["name"]);
-			$line->setNumber($_POST["number"]);
-			$em->flush();
-			return $this->redirect($this->generateUrl('line'));
-		}
-	}
-	
-	/**
-	 *  将线路数据返回为json格式
+	 *  与主页面进行数据交互，将线路数据返回为json格式
 	 *  @Route("/data/get",name="line_get")
 	 * 
 	 */
 	public function getAction(Request $request)
 	{
-		$em = $this->getDoctrine()->getManager();
+		$line = new Line();
+		$em = $this->getDoctrine()->getEntityManager();
+		$repo=$this->getDoctrine()->getRepository('AcmeDataBundle:Line');
+		///如果页面向后台发出数据，对数据进行更新并返回给页面
+		if($request->isMethod('POST')){
+			if($request->get('action')=='create'){
+				$line->setNumber($request->get('data')["number"]);
+				$line->setName($request->get('data')["name"]);
+				//对数据进行验证 
+				$output=$this->createLine($line);
+				return new Response(json_encode( $output ));    			
+			}elseif($request->get('action')=='edit'){
+				$line=$repo->findOneById($request->get('id'));
+				$line->setNumber($request->get('data')["number"]);
+				$line->setName($request->get('data')["name"]);
+				//对数据进行验证
+				var_dump($line);
+				//$output=$this->updateLine($line);
+				return new Response(json_encode( $output ));
+				
+			}
+		}
 		$query = $em->createQuery(
-    		'SELECT p.name,p.number FROM AcmeDataBundle:Line p'
+    		'SELECT p.name,p.number,p.id FROM AcmeDataBundle:Line p'
 		);
 		$line = $query->getResult();	
 		$iTotal = count($line);
 		$iFilteredTotal = count($line);
 		//输出结果
-		
+
 		
 		$output = array(
 				"sEcho" => 1,
@@ -115,14 +85,9 @@ class LineController extends Controller
 	
 		for ($i=0; $i<count($line); $i++){
 			$row=array();
-			$row["DT_RowID"]="row_".($i+1);
+			$row["DT_RowID"]=$line[$i]['id'];
 			$row["number"]=$line[$i]['number'];
 			$row["name"]=$line[$i]['name'];
-// 			$row[]='A';
-// 					<a href="javascript:void(0)" class="btn btn-small btn-active" ><font>查看线路情况</font></a>                          
-//                                 	<a href="javascript:void(0)" class="btn btn-small btn-warning" ><font>修改</font></a>
-//                                 	<a href="javascript:void(0)" class="btn btn-small btn-danger"><font>删除</font></a>';
-
 			$output['aaData'][]=$row;
 		}
 		
@@ -130,5 +95,106 @@ class LineController extends Controller
 		
 	}
 	
+	
+	/**
+	 * 测试页面
+	 * @Route("/data/testget")
+	 * @Template()
+	 */
+	public function testgetAction(){
+		return array();
+	}
+
+	/**
+	 * 通过ajax发来的数据创建新的线路数据
+	 * @param Line() $line
+	 * @return $output
+	 */
+
+	private function createLine($line)
+	{
+		$validator = $this->get('validator');
+		$errors = $validator->validate($line);
+		$em = $this->getDoctrine()->getEntityManager();
+		if (count($errors) > 0) {
+		
+			for($i=0;$i<count($errors);$i++){
+				//     					var_dump($errors[$i]->getmessage());
+				//     					var_dump($errors[$i]->getPropertyPath());
+				$filederror['name']=$errors[$i]->getPropertyPath();
+				$filederror['status']= $errors[$i]->getMessage();
+				$fieldErrors[]=$filederror;
+			}
+		
+			$output = array(
+					"id"=>"row_31",
+					"error"=>"数据填写有误",
+					"fieldErrors"=>$fieldErrors,
+					"data"=>[],
+			);
+			return  $output;
+		} else {
+			$em->persist($line);
+			$em->flush();
+			// 				 //返回一个结果给前台
+			$output = array(
+					"id"=>"row_31",
+					"error"=>"",
+					"fieldErrors"=>[],
+					"data"=>[],
+					"row"=>array(
+							"DT_RowId"=>"row_30",
+							"name" => $line->getName(),
+							"number" => $line->getNumber()
+					)
+			);
+			return $output;
+		}
+	}
+	
+	
+	/**
+	 * 通过ajax发来的数据 修改 的线路数据
+	 * @param Line() $line
+	 * @return $output
+	 */
+
+	private function updateLine($line)
+	{
+		$validator = $this->get('validator');
+		$errors = $validator->validate($line);
+		$em = $this->getDoctrine()->getEntityManager();
+		if (count($errors) > 0) {
+		
+			for($i=0;$i<count($errors);$i++){
+				$filederror['name']=$errors[$i]->getPropertyPath();
+				$filederror['status']= $errors[$i]->getMessage();
+				$fieldErrors[]=$filederror;
+			}
+		
+			$output = array(
+					"id"=>"row_31",
+					"error"=>"数据填写有误",
+					"fieldErrors"=>$fieldErrors,
+					"data"=>[],
+			);
+			return  $output;
+		} else {
+			$em->flush();
+			// 				 //返回一个结果给前台
+			$output = array(
+					"id"=>"row_31",
+					"error"=>"",
+					"fieldErrors"=>[],
+					"data"=>[],
+					"row"=>array(
+							"DT_RowId"=>"row_30",
+							"name" => $line->getName(),
+							"number" => $line->getNumber()
+					)
+			);
+			return $output;
+		}
+	}
 	
 }

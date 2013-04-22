@@ -53,8 +53,8 @@
 }
 
 .dataTables_length {
-	width: 40%;
-	float: left;
+	width: 50%;
+	//float: left;
 	margin-left: 10px;
 }
 
