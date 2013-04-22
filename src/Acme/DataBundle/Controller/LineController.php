@@ -89,7 +89,7 @@ class LineController extends Controller
 	 *  @Route("/data/get",name="line_get")
 	 * 
 	 */
-	public function getAction()
+	public function getAction(Request $request)
 	{
 		$em = $this->getDoctrine()->getManager();
 		$query = $em->createQuery(
@@ -99,8 +99,14 @@ class LineController extends Controller
 		$iTotal = count($line);
 		$iFilteredTotal = count($line);
 		//输出结果
+		
+		
 		$output = array(
 				"sEcho" => 1,
+				"id"=>-1,
+				"error" => "",
+				"fieldErrors" => [],
+				"data" => [],
 				"iTotalRecords" =>"4",
 				"iTotalDisplayRecords" =>"4",
 				"aaData" => array()
@@ -109,10 +115,10 @@ class LineController extends Controller
 	
 		for ($i=0; $i<count($line); $i++){
 			$row=array();
-			
-			$row[]=$line[$i]['number'];
-			$row[]=$line[$i]['name'];
-			$row[]='A';
+			$row["DT_RowID"]="row_".($i+1);
+			$row["number"]=$line[$i]['number'];
+			$row["name"]=$line[$i]['name'];
+// 			$row[]='A';
 // 					<a href="javascript:void(0)" class="btn btn-small btn-active" ><font>查看线路情况</font></a>                          
 //                                 	<a href="javascript:void(0)" class="btn btn-small btn-warning" ><font>修改</font></a>
 //                                 	<a href="javascript:void(0)" class="btn btn-small btn-danger"><font>删除</font></a>';

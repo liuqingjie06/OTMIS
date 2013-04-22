@@ -55,17 +55,20 @@
 .dataTables_length {
 	width: 40%;
 	float: left;
+	margin-left: 10px;
 }
 
 .dataTables_filter {
-	width: 50%;
+	width: 30%;
 	float: right;
 	text-align: right;
+	margin-right:10px;
 }
 
 .dataTables_info {
-	width: 60%;
+	width: 40%;
 	float: left;
+	margin:20px 0;
 }
 
 .dataTables_paginate {
@@ -576,12 +579,14 @@ div.box {
 	background-color: #E5E5FF;
 }
 
-select.d {	
-	width:80px;
+.dataTables_length select {	
+	width:60px;
 }
 
 .dataTables_filter input {
 	width:80px;
 	float:right;
 }
+
+
 
