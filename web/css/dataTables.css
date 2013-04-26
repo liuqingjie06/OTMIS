@@ -53,7 +53,7 @@
 }
 
 .dataTables_length {
-	width: 50%;
+	width: 30%;
 	float: left;
 	margin-left: 10px;
 }
@@ -68,7 +68,7 @@
 .dataTables_info {
 	width: 40%;
 	float: left;
-	margin:20px 0;
+	margin:0px 0 0 0;
 }
 
 .dataTables_paginate {

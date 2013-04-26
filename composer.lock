@@ -1,5 +1,5 @@
 {
-    "hash": "9ddd1000ecaa8923c5bbc59149fb7b7a",
+    "hash": "9e295b7ef9d44219c20a8d4741cc1b70",
     "packages": [
         {
             "name": "doctrine/common",
@@ -947,6 +947,86 @@
             "time": "1350121319"
         },
         {
+            "name": "os/excel-bundle",
+            "version": "dev-master",
+            "target-dir": "OS/ExcelBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ouardisoft/OSExcelBundle.git",
+                "reference": "73e8baff0b3ab42552416e8de1bb1dfa2b8580aa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ouardisoft/OSExcelBundle/zipball/73e8baff0b3ab42552416e8de1bb1dfa2b8580aa",
+                "reference": "73e8baff0b3ab42552416e8de1bb1dfa2b8580aa",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.6",
+                "os/php-excel": "2.1"
+            },
+            "time": "1365029357",
+            "type": "symfony-bundle",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "OS\\ExcelBundle": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "LOUARDI Abdeltif",
+                    "email": "louardi.abdeltif@yahoo.fr",
+                    "homepage": "http://phphub.net"
+                }
+            ],
+            "description": "OS Excel Bundle for Symfony2",
+            "homepage": "http://github.com/ouardisoft/OSExcelBundle",
+            "keywords": [
+                "excel"
+            ]
+        },
+        {
+            "name": "os/php-excel",
+            "version": "2.1",
+            "target-dir": "PHPExcel",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ouardisoft/PHPExcel.git",
+                "reference": "2.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ouardisoft/PHPExcel/zipball/2.1",
+                "reference": "2.1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.6"
+            },
+            "time": "2012-05-02 20:42:37",
+            "type": "library",
+            "installation-source": "dist",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "LOUARDI Abdeltif",
+                    "email": "louardi.abdeltif@yahoo.fr",
+                    "homepage": "http://phphub.net"
+                }
+            ],
+            "description": "PHP Excel Library",
+            "homepage": "http://github.com/ouardisoft/PHPExcel",
+            "keywords": [
+                "excel"
+            ]
+        },
+        {
             "name": "querypath/QueryPath",
             "version": "dev-master",
             "source": {
@@ -1615,6 +1695,7 @@
     "stability-flags": {
         "vich/uploader-bundle": 20,
         "knplabs/knp-gaufrette-bundle": 20,
-        "gedmo/doctrine-extensions": 20
+        "gedmo/doctrine-extensions": 20,
+        "os/excel-bundle": 20
     }
 }

@@ -14,5 +14,5 @@ if (!function_exists('intl_get_error_code')) {
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
 
-
+require __DIR__.'/../vendor/os/php-excel/PHPExcel/PHPExcel.php';//加载PHPExcel类
 return $loader;

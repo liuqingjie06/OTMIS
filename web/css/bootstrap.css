@@ -206,8 +206,8 @@ textarea {
 body {
   margin: 0;
   font-family: "Helvetica Neue", "Hiragino Sans GB", "Segoe UI", "Microsoft Yahei", "微软雅黑", Tahoma, Arial, STHeiti, sans-serif;
-  font-size: 15.5px;
-  line-height: 20px;
+  font-size: 14.5px;
+  line-height: 18px;
   color: #333333;
   background-color: #f5f5f5;
 }
@@ -983,6 +983,14 @@ table {
 .table-condensed th,
 .table-condensed td {
   padding: 4px 5px;
+}
+.table-minfont {
+	font-size:9px;
+	
+}
+.table-minfont th,
+.table-minfont td{
+	line-height:12px;
 }
 .table-bordered {
   border: 1px solid #dddddd;

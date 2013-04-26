@@ -35,7 +35,7 @@ class LineController extends Controller
 	
 	/**
 	 *  与主页面进行数据交互，将线路数据返回为json格式
-	 *  @Route("/data/get",name="line_get")
+	 *  @Route("/data/line/get",name="line_get")
 	 * 
 	 */
 	public function getAction(Request $request)

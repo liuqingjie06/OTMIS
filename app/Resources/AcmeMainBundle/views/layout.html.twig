@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}铁路工务信息管理系统{% endblock %}</title>
+        <!-- Le styles -->
+	    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+	
+	    <!--[if lte IE 6]>
+	    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-ie6.css') }}">
+	    <![endif]-->
+	    <!--[if lte IE 7]>
+	    <link rel="stylesheet" type="text/css" href="{{ asset('css/ie.css') }}">
+	    <![endif]-->
+{# 		<script type="text/javascript" src="{{ asset('js/util.js') }}"></script>		#}
+		<link rel="shortcut icon" href="{{asset('images/Talkingdata.ico')}}" type="image/x-icon" />
+{# 		<script type="text/javascript" language="javascript" src="{{ asset('js/check.js')}}"></script>#}
+		<script type="text/javascript" src="{{asset('js/jquery.min.js')}}"></script>
+{# 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>  		#}
+		
+		<script type="text/javascript" language="javascript" src="{{ asset('js/jquery.dataTables.min.js')}}"></script>
+		<script type="text/javascript" language="javascript" src="{{ asset('js/TableTools.js')}}"></script>
+		<script type="text/javascript" language="javascript" src="{{ asset('js/dataTables.editor.js')}}"></script>
+		<script type="text/javascript" language="javascript" src="{{ asset('js/ZeroClipboard.js')}}"></script>
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/Datatables.css')}}" />
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/dataTables/TableTools.css')}}" />
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/dataTables/dataTables.editor.css')}}" />
+{# 		<script type="text/javascript" src="{{ asset('js/highslide/highslide-full.min.js')}}"></script>#}
+{# 		<script type="text/javascript" src="{{ asset('js/highslide/highslide.config.js')}}" charset="utf-8"></script>#}
+{# 		<link rel="stylesheet" type="text/css" href="{{ asset('css/highslide.css')}}" />#}
+		<style type="text/css">
+			li .active a{
+				background-color:#396b9a;
+			}
+		</style>
+		<script type="text/javascript">
+//在datatables中显示bootstrap风格的表
+		/* API method to get paging information */
+		$.fn.dataTableExt.oApi.fnPagingInfo = function ( oSettings )
+		{
+		    return {
+		        "iStart":         oSettings._iDisplayStart,
+		        "iEnd":           oSettings.fnDisplayEnd(),
+		        "iLength":        oSettings._iDisplayLength,
+		        "iTotal":         oSettings.fnRecordsTotal(),
+		        "iFilteredTotal": oSettings.fnRecordsDisplay(),
+		        "iPage":          oSettings._iDisplayLength === -1 ?
+		            0 : Math.ceil( oSettings._iDisplayStart / oSettings._iDisplayLength ),
+		        "iTotalPages":    oSettings._iDisplayLength === -1 ?
+		            0 : Math.ceil( oSettings.fnRecordsDisplay() / oSettings._iDisplayLength )
+		    };
+		}
+		 
+		/* Bootstrap style pagination control */
+		$.extend( $.fn.dataTableExt.oPagination, {
+		    "bootstrap": {
+		        "fnInit": function( oSettings, nPaging, fnDraw ) {
+		            var oLang = oSettings.oLanguage.oPaginate;
+		            var fnClickHandler = function ( e ) {
+		                e.preventDefault();
+		                if ( oSettings.oApi._fnPageChange(oSettings, e.data.action) ) {
+		                    fnDraw( oSettings );
+		                }
+		            };
+		 
+		            $(nPaging).addClass('pagination').append(
+		                '<ul>'+
+		                    '<li class="prev disabled"><a href="#">&larr; '+oLang.sPrevious+'</a></li>'+
+		                    '<li class="next disabled"><a href="#">'+oLang.sNext+' &rarr; </a></li>'+
+		                '</ul>'
+		            );
+		            var els = $('a', nPaging);
+		            $(els[0]).bind( 'click.DT', { action: "previous" }, fnClickHandler );
+		            $(els[1]).bind( 'click.DT', { action: "next" }, fnClickHandler );
+		        },
+		 
+		        "fnUpdate": function ( oSettings, fnDraw ) {
+		            var iListLength = 5;
+		            var oPaging = oSettings.oInstance.fnPagingInfo();
+		            var an = oSettings.aanFeatures.p;
+		            var i, j, sClass, iStart, iEnd, iHalf=Math.floor(iListLength/2);
+		 
+		            if ( oPaging.iTotalPages < iListLength) {
+		                iStart = 1;
+		                iEnd = oPaging.iTotalPages;
+		            }
+		            else if ( oPaging.iPage <= iHalf ) {
+		                iStart = 1;
+		                iEnd = iListLength;
+		            } else if ( oPaging.iPage >= (oPaging.iTotalPages-iHalf) ) {
+		                iStart = oPaging.iTotalPages - iListLength + 1;
+		                iEnd = oPaging.iTotalPages;
+		            } else {
+		                iStart = oPaging.iPage - iHalf + 1;
+		                iEnd = iStart + iListLength - 1;
+		            }
+		 
+		            for ( i=0, iLen=an.length ; i<iLen ; i++ ) {
+		                // Remove the middle elements
+		                $('li:gt(0)', an[i]).filter(':not(:last)').remove();
+		 
+		                // Add the new list items and their event handlers
+		                for ( j=iStart ; j<=iEnd ; j++ ) {
+		                    sClass = (j==oPaging.iPage+1) ? 'class="active"' : '';
+		                    $('<li '+sClass+'><a href="#">'+j+'</a></li>')
+		                        .insertBefore( $('li:last', an[i])[0] )
+		                        .bind('click', function (e) {
+		                            e.preventDefault();
+		                            oSettings._iDisplayStart = (parseInt($('a', this).text(),10)-1) * oPaging.iLength;
+		                            fnDraw( oSettings );
+		                        } );
+		                }
+		 
+		                // Add / remove disabled classes from the static elements
+		                if ( oPaging.iPage === 0 ) {
+		                    $('li:first', an[i]).addClass('disabled');
+		                } else {
+		                    $('li:first', an[i]).removeClass('disabled');
+		                }
+		 
+		                if ( oPaging.iPage === oPaging.iTotalPages-1 || oPaging.iTotalPages === 0 ) {
+		                    $('li:last', an[i]).addClass('disabled');
+		                } else {
+		                    $('li:last', an[i]).removeClass('disabled');
+		                }
+		            }
+		        }
+		    }
+		} );
+				
+		</script>
+		
+		{% block contentjs %} {% endblock %}
+	</head>
+
+    <body>
+    	{% block header %}{% endblock %}
+        <div class="container" style="margin-top:80px">
+        	<div class="row">
+	        	<div class="span2 bs-docs-sidebar">
+	       
+	        		{% block menu %}{% endblock %}    
+	        	</div>
+	        	<div class="span10">
+	        		{% block content%}{% endblock %}
+	        	</div>
+        	</div>	
+    
+			{% block footer %}{% endblock %}
+		</div>
+		<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+	    <!--[if lte IE 6]>
+	    <script type="text/javascript" src="{{ asset('js/bootstrap-ie.js') }}"></script>
+	    <![endif]-->
+	    <script type="text/javascript">
+	    (function ($) {
+	      $(document).ready(function() {
+	        if ($.isFunction($.bootstrapIE6)) $.bootstrapIE6($(document));
+	      });
+	    })(jQuery);
+	    </script>
+	   
+
+    </body>
+</html>

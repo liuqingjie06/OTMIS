@@ -1,0 +1,95 @@
+{% extends 'AcmeMainBundle::layout.html.twig' %}
+
+{% block title %} 线路的资料 {% endblock %}
+{% block header %}
+{% include "AcmeMainBundle::header.html.twig" %}
+{% endblock %}
+{% block contentjs %}
+<script type="text/javascript">
+
+$(document).ready(function() {
+	var editor = new $.fn.dataTable.Editor({
+		"ajaxUrl" : "{{ url('line_get') }}",
+		"domTable" : "#1001",
+		"fields" : [{
+				"label" : "线路名称:",
+				"name" :"name"
+			},  {
+				"label" : "线路编号:",
+				"name" :"number"
+			}]
+		});
+	$('#1001').dataTable( {
+		"oLanguage": {
+			"sProcessing":   "处理中...",
+		    "sLengthMenu":   "每页显示 _MENU_ 项",
+		    "sZeroRecords":  "没有匹配结果",
+		    "sInfo":         "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+		    "sInfoEmpty":    "显示第 0 至 0 项结果，共 0 项",
+		    "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+		    "sInfoPostFix":  "",
+		    "sSearch":       "<botton class='btn btn-link'>搜索</botton>  ",
+		    "sUrl":          "",
+		    "oPaginate": {
+		        "sFirst":    "首页",
+		        "sPrevious": "上页",
+		        "sNext":     "下页",
+		        "sLast":     "末页",}
+	        },
+
+	    "sDom": 'lfrT<"clear">tip',//"<'row'<'span5'l><'span5'f>r>t<'row'<'span5'i><'span5'p>>",
+		"bProcessing": true,
+	    "bPaginate": true,
+	    //"sPaginationType": "bootstrap",
+	    "sPaginationType": "full_numbers",
+	    "sAjaxSource": "{{ url('line_get') }}",
+	    "aoColumns" : [
+	                   { "mDataProp" :"number"},
+	                   { "mDataProp" :"name"},	                                     
+		     ],
+	    "oTableTools": {
+	    	"sSwfPath": "{{ asset('swf/copy_csv_xls_pdf.swf') }}",
+			"sRowSelect": "single",  //用户选择单行
+			"aButtons": [
+			      {"sExtends" : "editor_create" ,"editor":editor, "sButtonText": "新建" },
+			      {"sExtends" : "editor_edit" ,"editor":editor , "sButtonText": "修改"},
+			      {"sExtends" : "editor_remove" ,"editor":editor , "sButtonText": "删除" },
+				  {"sExtends": "xls" , "sButtonText": "保存为Excel" },
+			  ]
+		}	
+	} );
+
+  
+});
+
+</script>
+{% endblock %}
+
+
+
+{% block menu %}
+<ul class="nav nav-tabs nav-stacked affix">
+   <li class="active"><a href="{{ url('line') }}"> 线路资料</a></li>
+   <li><a href="{{ url('curve') }}"> 曲线台帐</a></li>
+   <li><a href="#contents">坡道台帐</a></li>
+   <li class=""><a href="#html-template">无缝线路台帐</a></li>
+   <li class=""><a href="#examples"> 管理台帐</a></li>
+   <li><a href="#what-next">自轮转设备台帐</a></li>
+</ul>
+{% endblock %}
+
+{% block content%}
+
+<table class="table table-bordered" id="1001" style="width:100%">
+	<thead>
+		<tr>
+			<th>编号</th>
+			<th>线路名称</th>
+{# 			<th>id</th>	 			#}
+		</tr>
+	</thead>
+<tbody></tbody>
+</table>
+
+{% endblock %}
+
