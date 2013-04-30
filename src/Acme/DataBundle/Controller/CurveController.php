@@ -45,10 +45,8 @@ class CurveController extends Controller
 		return new Response(json_encode( $output ));
 	}
 	
-	/**
-	 * 
-	 */
-	private function findCurve()
+
+/*	private function findCurve()
 	{
 		$em = $this->getDoctrine()->getEntityManager();
 		$repo=$this->getDoctrine()->getRepository('AcmeDataBundle:Curve');
@@ -58,7 +56,7 @@ class CurveController extends Controller
 		$output = array(
 				"sEcho" => 1,
 				"id"=>-1,
-				"error" => "",
+				"error" => "",				
 				"fieldErrors" => [],
 				"data" => [],
 				"iTotalRecords" =>"4",
@@ -108,5 +106,5 @@ class CurveController extends Controller
 			$output['aaData'][]=$row;
 		}
 		return $output;		
-	}
+	}*/
 }

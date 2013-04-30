@@ -1,8 +1,3 @@
-acme_service:
-    resource: "@AcmeServiceBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 acme_data:
     resource: "@AcmeDataBundle/Controller/"
     type:     annotation
@@ -33,9 +28,13 @@ acme_user:
     prefix:   /
 
 # Internal routing configuration to handle ESI
+
 #_internal:
+
 #    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+
 #    prefix:   /_internal
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
