@@ -73,28 +73,7 @@ class User extends BaseUser
         return $this->department;
     }
 
-    /**
-     * Set realname
-     *
-     * @param string $realname
-     * @return User
-     */
-    public function setRealname($realname)
-    {
-        $this->realname = $realname;
-    
-        return $this;
-    }
-
-    /**
-     * Get realname
-     *
-     * @return string 
-     */
-    public function getRealname()
-    {
-        return $this->realname;
-    }
+   
 
     /**
      * Set person

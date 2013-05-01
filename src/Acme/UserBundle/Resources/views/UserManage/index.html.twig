@@ -26,15 +26,18 @@
   {% for item in user %}
   <tr>
     <td>{{ item.username }}</td>
-    <td>{{ item.person.realname }}</td>
-    <td>{{ item.person.sex }}</td>
-    <td>{{ item.person.zhicheng }}</td>
-    <td>{{ item.person.level }}</td>
-    <td>{{ item.person.skill }}</td>
-    <td>{{ item.person.birthday|date("Y-m-d") }}</td>
-    <td>{{ item.person.joinday|date("Y-m-d") }}</td>
-    <td>{{ item.person.politics }}</td>
-    <td>{{ item.person.remark }}</td>
+    {% if item.person != null %}
+        <td>{{ item.person.realname }}</td>
+        <td>{{ item.person.sex }}</td>
+        <td>{{ item.person.zhicheng }}</td>
+        <td>{{ item.person.level }}</td>
+        <td>{{ item.person.skill }}</td>
+        <td>{{ item.person.birthday}}</td>
+        <td>{{ item.person.joinday|date("Y-m-d") }}</td>
+        <td>{{ item.person.politics }}</td>
+        <td>{{ item.person.remark }}</td>
+    {% endif %}
+    
     <td>修改 删除</td>
   </tr>
   {% endfor %}

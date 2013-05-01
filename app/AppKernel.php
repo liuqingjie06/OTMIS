@@ -28,10 +28,9 @@ class AppKernel extends Kernel
         	new Vich\UploaderBundle\VichUploaderBundle(),
             new Acme\TryBundle\AcmeTryBundle(),
             new Acme\AdminBundle\AcmeAdminBundle(),
-            new Acme\MainBundle\AcmeMainBundle()
-,
+            new Acme\MainBundle\AcmeMainBundle(),
             new Acme\DataBundle\AcmeDataBundle(),
-            new Acme\ServiceBundle\AcmeServiceBundle(),
+           // new Acme\ServiceBundle\AcmeServiceBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

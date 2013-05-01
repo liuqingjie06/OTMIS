@@ -38,7 +38,7 @@ class LineController extends Controller
 	 *  @Route("/data/line/get",name="line_get")
 	 * 
 	 */
-/*	public function getAction(Request $request)
+	public function getAction(Request $request)
 	{
 		
 		$em = $this->getDoctrine()->getEntityManager();
@@ -124,7 +124,7 @@ class LineController extends Controller
 		
 		return new Response(json_encode( $output ));
 		
-	}*/
+	}
 	
 	
 	/**
@@ -159,7 +159,7 @@ class LineController extends Controller
 					"id"=>"",
 					"error"=>"数据填写有误",
 					"fieldErrors"=>$fieldErrors,
-					//"data"=>[],
+					"data"=>[]
 			);
 			return  $output;
 		} else {
@@ -169,8 +169,8 @@ class LineController extends Controller
 			$output = array(
 					"id"=>strval($line->getId()),
 					"error"=>"",
-				//	"fieldErrors"=>[],
-				//	"data"=>[],
+					"fieldErrors"=>[],
+					"data"=>[],
 					"row"=>array(
 							"DT_RowId"=>strval($line->getId()),
 							"name" => $line->getName(),
@@ -205,7 +205,7 @@ class LineController extends Controller
 					"id"=>"",
 					"error"=>"数据填写有误",
 					"fieldErrors"=>$fieldErrors,
-					"data"=>[],
+					"data"=>[]
 			);
 			return  $output;
 		} else {
